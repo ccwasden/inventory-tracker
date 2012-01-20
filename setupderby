@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# JAVA_HOME must already be set
+
+export INVENTORY_TRACKER_HOME=`dirname $0`
+
+export DERBY_HOME=${INVENTORY_TRACKER_HOME}/lib/derby-10.5
+
+export PATH=${DERBY_HOME}/bin:${PATH}
+
