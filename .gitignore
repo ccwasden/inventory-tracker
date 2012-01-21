@@ -35,6 +35,9 @@ Thumbs.db
 
 # IDE generated files #
 #######################
-.classpath
-.project
+*.classpath
+*.project
 
+# documentation files #
+#######################
+/doc
