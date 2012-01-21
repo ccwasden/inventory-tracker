@@ -1,5 +1,8 @@
+package model;
+
 import java.util.*; 
 
+class Barcode{ } // DELETE THIS LINE WHEN HAVE A BARCODE CLASS
 /**
  * Manager for all storage units
  * 
@@ -23,7 +26,7 @@ public class StorageUnitManager {
      * @return true if successfully added, else false
      *
      */
-    public bool addStorageUnit(StorageUnit unit){}
+    public boolean addStorageUnit(StorageUnit unit){return false;}
     
     /**
      * Removes StorageUnit specified
@@ -41,28 +44,28 @@ public class StorageUnitManager {
      * @return StorageUnit The unit with the passed in name
      *
      */    
-    public StorageUnit getStorageUnit(String name){}
+    public StorageUnit getStorageUnit(String name){return null;}
     
     /**
      * Retrieves all Storage Units 
      *
      * @return ArrayList<StorageUnit> The list of all storage units
      */    
-    public ArrayList<StorageUnit> getAllStorageUnits(){}
+    public ArrayList<StorageUnit> getAllStorageUnits(){return null;}
     
     /**
      * Getter for the product manager
      *
      * @return ProductManager The Product Manager
      */
-    public ProductManager getProductManager(){}
+    public ProductManager getProductManager(){return null;}
     
     /**
      * Getter for the item manager
      *
      * @return ItemManager The Item Manager
      */
-    public ItemManager getItemManager(){}
+    public ItemManager getItemManager(){return null;}
     
     /**
      * Removes Item
@@ -79,7 +82,7 @@ public class StorageUnitManager {
      *
      * @return Item The item of the barcode passed in
      */    
-    public Item getItem(Barcode barcode){}
+    public Item getItem(Barcode barcode){return null;}
     
     /**
      * Retrieves all items that apply to the filter
@@ -88,6 +91,6 @@ public class StorageUnitManager {
      *
      * @return ArrayList<Item> The list of items that apply to the filter
      */    
-    public ArrayList<Item> getItemsOfFilter(ItemFilter filter){}
+    public ArrayList<Item> getItemsOfFilter(ItemFilter filter){return null;}
     
 }

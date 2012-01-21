@@ -1,3 +1,5 @@
+package model;
+
 import java.util.*; 
 
 /**
@@ -21,7 +23,7 @@ public class ProductManager {
      * @return Product The product of the barcode
      *
      */
-    public Product getProduct(Barcode barcode){}
+    public Product getProduct(Barcode barcode){return null;}
     
     /**
      * Retrieves the storage unit of the associated name
@@ -29,7 +31,7 @@ public class ProductManager {
      * @return ArrayList<Product> All products
      *
      */    
-    public ArrayList<Product> getAllProducts(){}
+    public ArrayList<Product> getAllProducts(){return null;}
     
     /**
      * Retrieves all products that apply to the filter
@@ -38,6 +40,6 @@ public class ProductManager {
      *
      * @return ArrayList<Product> The list of products that apply to the filter
      */    
-    public ArrayList<Product> getProductsOfFilter(ProductFilter filter){}
+    public ArrayList<Product> getProductsOfFilter(ProductFilter filter){return null;}
     
 }

@@ -312,6 +312,7 @@
 			<packageset dir="${src}">
 				<include name="common/**"/>
 				<include name="gui/**"/>
+				<include name="model/**"/>
 			</packageset>
 			<taglet name="tools.PreTaglet" path="${build}"/>
 			<taglet name="tools.PostTaglet" path="${build}"/>

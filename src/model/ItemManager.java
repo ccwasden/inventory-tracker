@@ -1,3 +1,5 @@
+package model;
+
 import java.util.*; 
 
 /**
@@ -25,7 +27,7 @@ public class ItemManager {
      * @return ArrayList<Item> The deleted items
      *
      */
-    public ArrayList<Item> getDeletedItems(){}
+    public ArrayList<Item> getDeletedItems(){return null;}
     
     /**
      * Marks an item as deleted
