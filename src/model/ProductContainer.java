@@ -134,4 +134,19 @@ public abstract class ProductContainer {
 	public SortedSet<Product> getProductsOfFilter(ProductFilter productFilter) { 
 		return null;
 	}	
+	
+	/**
+	 * 
+	 * @return The StorageUnit containing this ProductContainer
+	 */
+	public StorageUnit getStorageUnit() {
+		return null;
+	}
+	
+	/**
+	 * @return The ProductGroup containing a given Product
+	 */
+	public ProductGroup getProductGroupContaining(Product product) {
+		return null;
+	}
 }

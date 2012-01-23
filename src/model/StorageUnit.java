@@ -122,15 +122,7 @@ public class StorageUnit extends ProductContainer {
 			ProductContainer productContainer) {
 		return 0;
 	}	
-	
-	/**
-	 * @return true if the mode is set for bar code scanning, otherwise 
-	 * false
-	 */
-	public boolean isScannerMode() {
-		return false;
-	}	
-	
+		
 	/**
 	 * @param product The Product to return all of its associated Items
 	 * @return the Items associated with a given Product
