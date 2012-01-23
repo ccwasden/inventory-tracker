@@ -1,6 +1,8 @@
 package model;
 
+import java.sql.Timestamp;
 import java.util.*; 
+import common.Result;
 
 /**
  * A physical instance of a particular Product. An Item correpsronds to a physical
@@ -36,31 +38,31 @@ public class Item {
 	//////////////////////ACCESSORS/////////////////////////////
 
 	public Barcode getBarcode() {
-		
+		return null;
 	}
 
 	public Timestamp getExpirationDate() {
-		
+		return null;		
 	}
 
 	public Timestamp getDateAdded() {
-		
+		return null;
 	}
 
 	public Timestamp getDateRemoved() {
-		
+		return null;
 	}
 
 	public Product getProduct() {
-		
+		return null;
 	}
 
 	public StorageUnit getStorageUnit() {
-		
+		return null;
 	}
 
 	public ProductGroup getProductGroup() {
-		
+		return null;
 	}
 
 	//////////////////////MODIFIERS/////////////////////////////
@@ -84,23 +86,23 @@ public class Item {
 	/////////////////////////////////////////////////////////////
 
 	public boolean isExpired() {
-		
+		return false;
 	}
 
 	public boolean isRemoved() {
-		
+		return false;
 	}
 
 	public Result remove() {
-		
+		return null;
 	}
 
 	public Result editItem() {
-
+		return null;
 	}
 
 	public Result canEditItem() {
-		
+		return null;
 	}
 
 	public void moveItem(ProductContainer container) {

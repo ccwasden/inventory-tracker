@@ -1,6 +1,8 @@
 package model;
 
+import java.sql.Timestamp;
 import java.util.*; 
+import common.Result;
 
 /**
  * A bar-coded product that can be stored in a StorageUnit.
@@ -29,23 +31,23 @@ public class Product {
 	//////////////////////ACCESSORS/////////////////////////////
 
 	public Timestamp getCreationDate() {
-		
+		return null;
 	}
 
 	public Barcode getBarcode() {
-		
+		return null;
 	}
 
 	public String getDescription() {
-		
+		return null;
 	}
 
 	public float getShelfLife() {
-		
+		return 0;
 	}
 
 	public int threeMonthSupply() {
-		
+		return 0;
 	}
 
 	//////////////////////MODIFIERS//////////////////////////////
@@ -75,14 +77,14 @@ public class Product {
 	}
 
 	public Result canEditProduct() {
-		
+		return null;
 	}
 
 	public Result moveProduct() {
-		
+		return null;
 	}
 
 	public ItemList getItems() {
-		
+		return null;
 	}
 }

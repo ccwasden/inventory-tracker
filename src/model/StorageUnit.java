@@ -2,8 +2,6 @@ package model;
 
 import java.util.SortedSet;
 
-class ItemFilter{ } // DELETE THIS LINE WHEN HAVE A ITEMFILTER CLASS
-
 /**
  * A StorageUnit is a room, closet, pantry, cupboard, or some other
  * enclosed area where items can be stored.

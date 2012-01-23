@@ -2,10 +2,6 @@ package model;
 
 import java.util.SortedSet;
 
-class Product{ } // DELETE THIS LINE WHEN HAVE A PRODUCT CLASS
-class Item{ } // DELETE THIS LINE WHEN HAVE AN ITEM CLASS
-class ProductFilter{ } // DELETE THIS LINE WHEN HAVE A PRODUCTFILTER CLASS
-
 /**
  * A ProductContainer is a generic term for StorageUnits and ProductGroups. 
  * These objects can "contain" Products and Items, and are referred to generically
