@@ -10,12 +10,101 @@ import java.util.*;
  * 
  */
 public class Item {
-    
-    /**
-     * Constructs a new Item
-     *
-     */
-    public Item(){
-    	
-    }
+	private Barcode _barcode;
+	private Timestamp _expirationDate;
+	private Timestamp _dateAdded;
+	private Timestamp _dateRemoved;
+
+
+	/**
+	 * Constructs a new Item
+	 *
+	 */
+	public Item(Barcode barcode, Timestamp expirationDate){
+		
+	}
+
+	public Item(Barcode barcode, Timestamp expirationDate, Timestamp dateAdded){
+		
+	}
+
+	public Item(Barcode barcode, Timestamp expirationDate,
+								Timestamp dateAdded, Timestamp dateRemoved ){
+		
+	}
+
+	//////////////////////ACCESSORS/////////////////////////////
+
+	public Barcode getBarcode() {
+		
+	}
+
+	public Timestamp getExpirationDate() {
+		
+	}
+
+	public Timestamp getDateAdded() {
+		
+	}
+
+	public Timestamp getDateRemoved() {
+		
+	}
+
+	public Product getProduct() {
+		
+	}
+
+	public StorageUnit getStorageUnit() {
+		
+	}
+
+	public ProductGroup getProductGroup() {
+		
+	}
+
+	//////////////////////MODIFIERS/////////////////////////////
+
+	public void setBarcode(Barcode barcode) {
+		
+	}
+
+	public void setExpirationDate(Timestamp date) {
+		
+	}
+
+	private void setDateAdded(Timestamp date) {
+		
+	}
+
+	private void setDateRemoved(Timestamp date) {
+		
+	}
+
+	/////////////////////////////////////////////////////////////
+
+	public boolean isExpired() {
+		
+	}
+
+	public boolean isRemoved() {
+		
+	}
+
+	public Result remove() {
+		
+	}
+
+	public Result editItem() {
+
+	}
+
+	public Result canEditItem() {
+		
+	}
+
+	public void moveItem(ProductContainer container) {
+
+	}
+
 }
