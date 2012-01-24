@@ -13,33 +13,43 @@ import common.Result;
  */
 public class Item {
 	private Barcode _barcode;
+	private Product _product;
+	private StorageUnit _storageUnit;
 	private Timestamp _expirationDate;
 	private Timestamp _dateAdded;
 	private Timestamp _dateRemoved;
-	private Product _product;
-	private StorageUnit _storageUnit;
 
 
 	/**
-	 * Constructs a new Item
-	 *
+	 * Constructor used to create for creating new Items.
+	 * @param barcode The associated Barcode
+	 * @param product The Product this Item belongs to
+	 * @param storageUnit
+	 * @param expirationDate
 	 */
-	public Item(Barcode barcode, Timestamp expirationDate){
+	public Item(Barcode barcode, Product product, StorageUnit storageUnit, Timestamp expirationDate) {
 		
 	}
 
-	public Item(Barcode barcode, Timestamp expirationDate, Timestamp dateAdded){
-		
-	}
 
-	public Item(Barcode barcode, Timestamp expirationDate,
-								Timestamp dateAdded, Timestamp dateRemoved ){
+	/**
+	 * Constructor used when loading Items from database.
+	 * @param barcode The associated Barcode
+	 * @param product The Product this Item belongs to
+	 * @param storageUnit
+	 * @param expirationDate
+	 * @param dateAdded
+	 * @param dateRemoved
+	 */
+	public Item(Barcode barcode, Product product, StorageUnit storageUnit, Timestamp expirationDate,
+								Timestamp dateAdded, Timestamp dateRemoved ) {
 		
 	}
 
 	//////////////////////ACCESSORS/////////////////////////////
 
 	/**
+	* Gets the Item's Barcode.
 	* @return The Barcode associated for this Item.
 	*/
 	public Barcode getBarcode() {
@@ -47,6 +57,7 @@ public class Item {
 	}
 
 	/**
+	* Gets the Item's expiration date.
 	* @return A Timestamp for the expiration date.
 	*/
 	public Timestamp getExpirationDate() {
@@ -54,6 +65,7 @@ public class Item {
 	}
 
 	/**
+	* Gets the Item's date added.
 	* @return The Timestamp for the date added.
 	*/
 	public Timestamp getDateAdded() {
@@ -61,6 +73,7 @@ public class Item {
 	}
 
 	/**
+	* Gets the Item's date removed.
 	* @return The Timestamp for the date when removed, or null if not removed.
 	*/
 	public Timestamp getDateRemoved() {
@@ -68,6 +81,7 @@ public class Item {
 	}
 
 	/**
+	* Gets the Item's Product.
 	* @return The Product associated with this Item.
 	*/
 	public Product getProduct() {
@@ -75,21 +89,17 @@ public class Item {
 	}
 
 	/**
+	* Gets the StorageUnit containing the Item.
 	* @return The StorageUnit that this Item is in.
 	*/
 	public StorageUnit getStorageUnit() {
 		return _storageUnit;
 	}
 
-	/**
-	* @return The ProductGroup this Item is associated with.
-	*/
-	public ProductGroup getProductGroup() {
-		return _productGroup;
-	}
 
 	//////////////////////MODIFIERS/////////////////////////////
 	/**
+	* Updates the Item's Barcode.
 	* @param barcode The new Barcode for this Item.
 	*/
 	public void setBarcode(Barcode barcode) {
@@ -97,6 +107,7 @@ public class Item {
 	}
 
 	/**
+	* Updates the Item's expiration date.
 	* @param date The Timestamp for the Item's updated expiration date.
 	*/
 	public void setExpirationDate(Timestamp date) {
@@ -124,6 +135,7 @@ public class Item {
 	/////////////////////////////////////////////////////////////
 
 	/**
+	* Detrmines if the Item is expired.
 	* @return True if the Item has expired, else false.
 	*/
 	public boolean isExpired() {
@@ -131,6 +143,7 @@ public class Item {
 	}
 
 	/**
+	* Determines if the Item has been removed.
 	* @return True if the Item has been removed, else false.
 	*/
 	public boolean isRemoved() {
@@ -169,6 +182,7 @@ public class Item {
 	}
 
 	/**
+	* Moves this item to another ProductContainer.
 	* @param container The new target ProductContainer
 	*/
 	public void moveItem(ProductContainer container) {
