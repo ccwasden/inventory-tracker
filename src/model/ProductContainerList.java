@@ -35,7 +35,7 @@ public class ProductContainerList {
 	* @return A Result indicating success or failure and reason.
 	*/
 	public Result addProductContainer(ProductContainer container) {
-		
+		return null;
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class ProductContainerList {
 	* @return A Result indicating success or failure and reason.
 	*/
 	public Result removeProductContainer(ProductContainer container) {
-		
+		return null;
 	}
 
 	/**
@@ -53,6 +53,6 @@ public class ProductContainerList {
 	* @return True if container is found, else false.
 	*/
 	public boolean hasProductContainer(ProductContainer container) {
-		
+		return false;
 	}
 }

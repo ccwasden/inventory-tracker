@@ -9,5 +9,7 @@ public class ProductFilter {
      * @param product (Product) The product to run filter on
      * @return boolean true if product is in filter
      */
-    public boolean productInFilter(Product product){}
+    public boolean productInFilter(Product product) {
+    	return false;
+    }
 }
