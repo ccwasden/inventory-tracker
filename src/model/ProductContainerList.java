@@ -1,5 +1,6 @@
 package model;
 
+import common.Result;
 import java.util.*;
 
 /**

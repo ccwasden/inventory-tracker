@@ -20,6 +20,8 @@ public class Item {
 	private Timestamp _dateRemoved;
 
 
+	//////////////////////CONSTRUCTORS/////////////////////////////
+
 	/**
 	 * Constructor used to create for creating new Items.
 	 * @param barcode The associated Barcode
