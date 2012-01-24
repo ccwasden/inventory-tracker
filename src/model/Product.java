@@ -13,78 +13,154 @@ public class Product {
 	private Barcode _barcode;
 	private String _description;
 	private float _shelfLife;
+	private Size _size;
 	private int _threeMonthSupply;
+	private String _unitOfMeasurement;
+	private ProductContainerList _containers;
+
+
+	//////////////////////CONSTRUCTORS/////////////////////////////
 
 	/**
 	 * Constructs a new Item
-	 *
+	 * @param barcode
 	 */
-	public Product(Barcode barcode, String description, float shelfLife, int threeMonthSupply) {
+	public Product(Barcode barcode, String description, float shelfLife, Size size,
+								int threeMonthSupply, String unitOfMeasurement) {
 		
 	}
 
-	public Product(Barcode barcode, String description, float shelfLife,
-									int threeMonthSupply, Timestamp creationDate) {
+	public Product(Barcode barcode, String description, float shelfLife, Size size,
+						int threeMonthSupply, String unitOfMeasurement, Timestamp creationDate) {
 		
 	}
 
 	//////////////////////ACCESSORS/////////////////////////////
 
+	/**
+	* @return A Timestamp with the Product's creation date.
+	*/
 	public Timestamp getCreationDate() {
-		return null;
+		return _creationDate;
 	}
 
+	/**
+	* @return The Barcode associated with this product.
+	*/
 	public Barcode getBarcode() {
-		return null;
+		return _barcode;
 	}
 
+	/**
+	* @return The description of this Product.
+	*/
 	public String getDescription() {
-		return null;
+		return _description;
 	}
 
+	/**
+	* @return The shelf life of this Product.
+	*/
 	public float getShelfLife() {
-		return 0;
+		return _shelfLife;
 	}
 
-	public int threeMonthSupply() {
-		return 0;
+	/**
+	* @return The ThreeMonthSupply for this Product.
+	*/
+	public int getThreeMonthSupply() {
+		return _threeMonthSupply;
+	}
+
+	/**
+	* @return The Unit of measurement for the three month supply.
+	*/
+	public String getUnitOfMeasurement() {
+		return _unitOfMeasurement;
+	}
+
+	/**
+	* Gets all the ProductContainers with this Product in it.
+	* @return The product's containers.
+	*/
+	public ProductContainerList getContainers() {
+		return _containers;
+	}
+
+	/**
+	* Gets an ItemList of Item's that are instances of this Product.
+	* @return The list of Items associated with this product.
+	*/
+	public ItemList getItems() {
+		return null;
 	}
 
 	//////////////////////MUTATORS////////////////////////////////
 
-	public void setCreationDate(Timestamp date) {
+	/**
+	* Sets the Product's creation date. This method should only be called upon
+	* intialization by the contructor.
+	* @param date A Timestamp with the creation date of this Item.
+	*/
+	private void setCreationDate(Timestamp date) {
 		
 	}
 
+	/**
+	* Sets the Barcode for the Product.
+	* @param barcode The Product's Barcode.
+	*/
 	public void setBarcode(Barcode barcode) {
 		
 	}
 
+	/**
+	* Sets the Product's description.
+	* @param description The Product's description.
+	*/
 	public void setDescription(String description) {
 		
 	}
 
+	/**
+	* Sets the Product's shelf life.
+	* @param shelfLife The Product's shelf life in months.
+	*/
 	public void setShelfLife(float shelfLife) {
 		
 	}
 
+	/**
+	* Sets the Product's three month supply.
+	* @param threeMonthSupply The Product's ThreeMonthSupply
+	*/
 	public void setThreeMonthSupply(int threeMonthSupply) {
 		
 	}
 
-	public void editProduct() {
-		
-	}
-
-	public Result canEditProduct() {
+	/**
+	* Edits the product, updating values to those passed in.
+	* @param product The Product with updated values.
+	* @return A Result indicating success or failure.
+	*/
+	public Result editProduct(Product product) {
 		return null;
 	}
 
-	public Result moveProduct() {
+	/**
+	* Checks to see if see if the edit would be valid.
+	* @param product The Product with updated values.
+	* @return A Result indicating success or failure.
+	*/
+	public Result canEditProduct(Product product) {
 		return null;
 	}
 
-	public ItemList getItems() {
+	/**
+	* Moves product to a new ProductContainer
+	* @param container The container to receive the Product.
+	*/
+	public Result moveProduct(ProductContainer container) {
 		return null;
 	}
 }
