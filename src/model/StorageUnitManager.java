@@ -2,7 +2,6 @@ package model;
 
 import java.util.*; 
 
-class Barcode{ } // DELETE THIS LINE WHEN HAVE A BARCODE CLASS
 /**
  * Manager for all storage units
  * 
