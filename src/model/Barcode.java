@@ -4,29 +4,29 @@ package model;
 * Represents a Barcode.
 */
 public class Barcode {
-	private String _id;
+	private String _code;
 
 	/**
 	* Constructs a new Barcode object.
-	* @param id The value of the Barcode
+	* @param code The value of the Barcode
 	*/
-	public Barcode(String id) {
+	public Barcode(String code) {
 		
 	}
 
 	/**
-	* Gets the Barcode's ID.
+	* Gets the Barcode's code.
 	* @return The Barcode's number.
 	*/
-	public String getID() {
-		
+	public String getCode() {
+		return _code;
 	}
 
 	/**
-	* Sets the Barcode's ID.
-	* @param id The new value for the Barcode.
+	* Sets the Barcode's code.
+	* @param code The new value for the Barcode.
 	*/
-	public setID(String id) {
+	public void setCode(String code) {
 		
 	}
 }
