@@ -17,7 +17,11 @@ public class StorageUnit extends ProductContainer {
 	 * Constructs a new instance of StorageUnit
 	 */
 	public StorageUnit() {
-		
+		super("");
+	}
+	
+	public StorageUnit(String name) {
+		super(name);
 	}	
 	
 	// Accessors
@@ -57,7 +61,8 @@ public class StorageUnit extends ProductContainer {
 	 * @return The number of items that were added
 	 */
 	public int addItems(SortedSet<Item> items) {
-		return 0;
+		_items.addAll(items);
+		return items.size();
 	}	
 	
 	/**
@@ -92,7 +97,7 @@ public class StorageUnit extends ProductContainer {
 	 * @param item The Item to be removed
 	 */
 	public void removeItem(Item item) {
-		
+		_items.remove(item);
 	}	
 	
 	/**

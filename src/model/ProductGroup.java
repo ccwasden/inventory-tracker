@@ -18,8 +18,8 @@ public class ProductGroup extends ProductContainer {
 	/**
 	 * Constructs a new instance of a ProductGroup
 	 */
-	public ProductGroup() {
-		
+	public ProductGroup(String name) {
+		super(name);
 	}	
 	
 	// Accessors
