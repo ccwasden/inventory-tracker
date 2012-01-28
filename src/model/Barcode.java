@@ -3,7 +3,8 @@ package model;
 /**
 * Represents a Barcode.
 */
-public class Barcode {
+@SuppressWarnings("serial")
+public class Barcode extends Model {
 	private String _code;
 
 	/**

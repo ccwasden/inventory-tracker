@@ -1,6 +1,7 @@
 package model;
 
-public class StorageUnitProduct {
+@SuppressWarnings("serial")
+public class StorageUnitProduct extends Model {
 
 	private StorageUnit _su;
 	private Product _p;

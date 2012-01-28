@@ -6,7 +6,8 @@ import java.util.*;
  * Manager for items
  * 
  */
-public class ItemManager {
+@SuppressWarnings("serial")
+public class ItemManager extends Model {
     private ArrayList<Item> _items;
     private HashMap<Item, StorageUnit> _itemToSUMap;
     private static ItemManager ref;
@@ -38,7 +39,6 @@ public class ItemManager {
     
     /**
      * Retrieves a list of deleted items
-     * 
      * @return ArrayList<Item> The deleted items
      *
      */
@@ -46,7 +46,6 @@ public class ItemManager {
     
     /**
      * Marks an item as deleted
-     * 
      * @param item Item The deleted item
      *
      */

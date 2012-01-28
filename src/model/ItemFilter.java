@@ -4,7 +4,8 @@ package model;
  * the filter for Items
  */
 
-public class ItemFilter {
+@SuppressWarnings("serial")
+public class ItemFilter extends Model {
 	/**
 	* Static method for unit testing purposes.
 	* @return true if success

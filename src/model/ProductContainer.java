@@ -7,7 +7,8 @@ import java.util.SortedSet;
  * These objects can "contain" Products and Items, and are referred to generically
  * as ProductContainers.
  */
-public abstract class ProductContainer {
+@SuppressWarnings("serial")
+public abstract class ProductContainer extends Model {
 	
 	private String _name;	
 	

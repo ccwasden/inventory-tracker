@@ -8,10 +8,11 @@ import common.Result;
  * A physical instance of a particular Product. An Item correpsronds to a physical
  * container with a barcode on it. For example, a case of soda might contain 24
  * cans of Diet Coke. In this case, the Product is, "Diet Coke, 12 fl oz," while
- * each phsyical can is a distinct Item.
+ * each physical can is a distinct Item.
  * 
  */
-public class Item {
+@SuppressWarnings("serial")
+public class Item extends Model {
 	private Barcode _barcode;
 	private Product _product;
 //	private StorageUnit _storageUnit;
@@ -161,7 +162,7 @@ public class Item {
 	/////////////////////////////////////////////////////////////
 
 	/**
-	* Detrmines if the Item is expired.
+	* Determines if the Item is expired.
 	* @return True if the Item has expired, else false.
 	*/
 	public boolean isExpired() {
@@ -179,7 +180,7 @@ public class Item {
 	/**
 	* Marks the Item as removed, setting the removed date and removing Item
 	* from all StorageUnits.
-	* @retun A Result indicating success or failure.
+	* @return A Result indicating success or failure.
 	* @post The object will no longer be associated with any ProductContainers and
 	*		will have a removedDate.
 	*/
@@ -189,7 +190,7 @@ public class Item {
 
 	/**
 	* @param item An Item with the new desired values.
-	* @return A Result indicating whether or not the paramater is a valid change,
+	* @return A Result indicating whether or not the parameter is a valid change,
 	* 			and a message as to why not if invalid.
 	* @post If was able to edit, this Item will now be updated with the values of the parameter.
 	*/
@@ -200,7 +201,7 @@ public class Item {
 
 	/**
 	* @param item An Item with the new desired values.
-	* @return A Result indicating whether or not the paramater is a valid change,
+	* @return A Result indicating whether or not the parameter is a valid change,
 	* 			and a message as to why not if invalid.
 	*/
 	public Result canEditItem(Item item) {
@@ -213,8 +214,8 @@ public class Item {
 	*/
 	public void moveItem(ProductContainer container) {
 		setStorageUnit(container.getStorageUnit());
-		StorageUnitManager.getInstance() // map a product associated with a storage unit in a subcontainer
-			.putStorageUnitProductInContainer(getStorageUnit(), _product, container);
+		StorageUnitManager.getInstance() // map a product associated with a storage unit to a container
+			.putStorageUnitProductInContainer(getStorageUnit(), getProduct(), container);
 	}
 
 	/**

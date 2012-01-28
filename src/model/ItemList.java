@@ -2,7 +2,8 @@ package model;
 
 import java.util.SortedSet;
 
-public class ItemList {
+@SuppressWarnings("serial")
+public class ItemList extends Model {
 
 	private SortedSet<Item> _items;
 

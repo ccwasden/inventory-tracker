@@ -7,7 +7,8 @@ import java.util.*;
 * Manages a list of Product containers for the Product class. Makes sure that Products are
 * controlled correctly within StorageContainers and ProductGroups.
 */
-public class ProductContainerList {
+@SuppressWarnings("serial")
+public class ProductContainerList extends Model {
 	private SortedSet<ProductContainer> _containers;
 	private Product _product;
 

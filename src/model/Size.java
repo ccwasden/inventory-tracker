@@ -5,7 +5,8 @@ import gui.common.SizeUnits;
 /**
 * Represents the size of a product.
 */
-class Size {
+@SuppressWarnings("serial")
+class Size extends Model {
 	private float _size;
 	private SizeUnits _units;
 

@@ -8,7 +8,8 @@ import common.Result;
  * A bar-coded product that can be stored in a StorageUnit.
  * 
  */
-public class Product {
+@SuppressWarnings("serial")
+public class Product extends Model {
 	private Timestamp _creationDate;
 	private Barcode _barcode;
 	private String _description;
