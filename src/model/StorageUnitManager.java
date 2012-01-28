@@ -10,12 +10,24 @@ public class StorageUnitManager {
     private ItemManager _itemManager;
     private ProductManager _productManager;
     private ArrayList<StorageUnit> _storageUnits;
+    private HashMap<StorageUnitProduct, ProductContainer> _productSUMap;
+    private static StorageUnitManager ref;
+
+    /**
+     * Get Singleton
+     * @return the singleton instance
+     */
+    public static StorageUnitManager getInstance()
+    {
+      if (ref == null) ref = new StorageUnitManager();
+      return ref;
+    }
     
     /**
-     * Constructs a new StorageUnitManager
+     * Singleton constructor
      *
      */
-    public StorageUnitManager(){}
+    private StorageUnitManager(){}
     
     /**
      * Retrieves the length of the document (number of characters)
@@ -91,6 +103,16 @@ public class StorageUnitManager {
      * @return ArrayList<Item> The list of items that apply to the filter
      */    
     public ArrayList<Item> getItemsOfFilter(ItemFilter filter){return null;}
+    
+    /**
+     * Maps a storage unit and product to a product container 
+     * @param sup (StorageUnitProduct) the object containing a storage unit and product for mapping 
+     * @param pc (ProductContainer) The ProductContainer to map to
+     */
+    public void putStorageUnitProductInContainer(StorageUnit su, Product p, ProductContainer pc){
+    	assert pc.getStorageUnit().equals(su);
+    	_productSUMap.put(new StorageUnitProduct(su, p), pc);
+    }
     
     /**
 	* Static method for unit testing purposes.

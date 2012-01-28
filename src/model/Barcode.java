@@ -37,4 +37,9 @@ public class Barcode {
 	public static boolean Test(){
 		return true;
 	}
+	
+	@Override
+	public int hashCode(){
+		return getCode().hashCode();
+	}
 }

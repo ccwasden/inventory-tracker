@@ -14,7 +14,7 @@ import common.Result;
 public class Item {
 	private Barcode _barcode;
 	private Product _product;
-	private StorageUnit _storageUnit;
+//	private StorageUnit _storageUnit;
 	private Timestamp _expirationDate;
 	private Timestamp _dateAdded;
 	private Timestamp _dateRemoved;
@@ -30,7 +30,10 @@ public class Item {
 	 * @param expirationDate
 	 */
 	public Item(Barcode barcode, Product product, StorageUnit storageUnit, Timestamp expirationDate) {
-		
+		setBarcode(barcode);
+		setProduct(product);
+		setStorageUnit(storageUnit);
+		setExpirationDate(expirationDate);
 	}
 
 
@@ -45,7 +48,12 @@ public class Item {
 	 */
 	public Item(Barcode barcode, Product product, StorageUnit storageUnit, Timestamp expirationDate,
 								Timestamp dateAdded, Timestamp dateRemoved ) {
-		
+		setBarcode(barcode);
+		setProduct(product);
+		setStorageUnit(storageUnit);
+		setExpirationDate(expirationDate);
+		setDateAdded(dateAdded);
+		setDateRemoved(dateRemoved);
 	}
 
 	//////////////////////ACCESSORS/////////////////////////////
@@ -95,7 +103,7 @@ public class Item {
 	* @return The StorageUnit that this Item is in.
 	*/
 	public StorageUnit getStorageUnit() {
-		return _storageUnit;
+		return ItemManager.getInstance().getStorageUnitOfItem(this);
 	}
 
 
@@ -133,6 +141,22 @@ public class Item {
 	private void setDateRemoved(Timestamp date) {
 		_dateRemoved = date;
 	}
+	
+	/**
+	 * Set the storage unit
+	 * @param su The storage Unit
+	 */
+	public void setStorageUnit(StorageUnit su){
+		ItemManager.getInstance().putItemInStorageUnit(this, su);
+	}
+	
+	/**
+	 * Set the product
+	 * @param p The Product
+	 */
+	private void setProduct(Product p){
+		_product = p;
+	}
 
 	/////////////////////////////////////////////////////////////
 
@@ -154,7 +178,7 @@ public class Item {
 
 	/**
 	* Marks the Item as removed, setting the removed date and removing Item
-	* from all ProductContainers.
+	* from all StorageUnits.
 	* @retun A Result indicating success or failure.
 	* @post The object will no longer be associated with any ProductContainers and
 	*		will have a removedDate.
@@ -188,7 +212,9 @@ public class Item {
 	* @param container The new target ProductContainer
 	*/
 	public void moveItem(ProductContainer container) {
-
+		setStorageUnit(container.getStorageUnit());
+		StorageUnitManager.getInstance() // map a product associated with a storage unit in a subcontainer
+			.putStorageUnitProductInContainer(getStorageUnit(), _product, container);
 	}
 
 	/**

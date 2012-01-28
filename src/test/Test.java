@@ -24,10 +24,5 @@ public class Test {
 		StorageUnitManager.Test();
 		System.out.println("All tests passed.");
 	}
-	
-//	public static boolean Assert(Boolean expr){
-//		if(!expr) ;
-//		return expr;
-//	}
 
 }

@@ -8,13 +8,26 @@ import java.util.*;
  */
 public class ItemManager {
     private ArrayList<Item> _items;
+    private HashMap<Item, StorageUnit> _itemToSUMap;
+    private static ItemManager ref;
     
     /**
      * Constructs a new ItemManager
      *
      */
-    public ItemManager(){
-    	
+    private ItemManager(){}
+    
+    /**
+     * Singleton instance
+     * @return the instance
+     */
+    public static ItemManager getInstance(){
+    	if(ref == null) ref = new ItemManager();
+    	return ref;
+    }
+    
+    public StorageUnit getStorageUnitOfItem(Item i){
+    	return _itemToSUMap.get(i);
     }
     
     /**
@@ -38,6 +51,15 @@ public class ItemManager {
      *
      */
     public void markDeleted(Item item){}
+    
+    /**
+     * Maps item to a storage unit
+     * @param i Item to map
+     * @param su StorageUnit to map to
+     */
+    public void putItemInStorageUnit(Item i, StorageUnit su){
+    	_itemToSUMap.put(i, su);
+    }
     
     /**
 	* Static method for unit testing purposes.
