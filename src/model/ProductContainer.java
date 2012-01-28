@@ -26,7 +26,7 @@ public abstract class ProductContainer extends Model {
 	/**
 	 * The Products this ProductContainer contains
 	 */
-	private SortedSet<Product> _products;
+	private ProductList _products;
 	
 	// Constructors
 	/**
@@ -35,7 +35,7 @@ public abstract class ProductContainer extends Model {
 	public ProductContainer(String name) {
 		setName(name);
 		setProductGroups(new TreeSet<ProductGroup>());
-		setProducts(new TreeSet<Product>());
+		setProducts(new ProductList(new TreeSet<Product>()));
 	}	
 	
 	// Accessors
@@ -56,7 +56,7 @@ public abstract class ProductContainer extends Model {
 	/**
 	 * @return The Products this ProductContainer contains
 	 */
-	public SortedSet<Product> getProducts() {
+	public ProductList getProducts() {
 		return _products;
 	}	
 	
@@ -78,7 +78,7 @@ public abstract class ProductContainer extends Model {
 	/**
 	 * Sets the collection of Products this ProductContainer contains
 	 */
-	public void setProducts(SortedSet<Product> products) {
+	public void setProducts(ProductList products) {
 		_products = products;
 	}		
 	
@@ -88,7 +88,8 @@ public abstract class ProductContainer extends Model {
 	 * @param productGroup The ProductGroup to be added
 	 */
 	public void addProductGroup(ProductGroup productGroup) {
-		_productGroups.add(productGroup);
+		if (canAddProductGroup(productGroup))
+			_productGroups.add(productGroup);
 	}	
 	
 	/**
@@ -98,7 +99,12 @@ public abstract class ProductContainer extends Model {
 	 * it is not already found in this ProductContainer, otherwise false
 	 */
 	public boolean canAddProductGroup(ProductGroup productGroup) {
-		return false;
+		if (productGroup.getName() == "")
+			return false;
+		for (ProductGroup pg : _productGroups)
+			if (pg.getName() == productGroup.getName())
+				return false;
+		return true;
 	}	
 	
 	/**
@@ -106,15 +112,19 @@ public abstract class ProductContainer extends Model {
 	 * @param product The product to be deleted
 	 */
 	public void deleteProduct(Product product) {
-		_products.remove(product);
+		if (canDeleteProduct(product))
+			_products.remove(product);
 	}	
 	
 	/**
 	 * Checks to see if a particular Product can be deleted
 	 * @param product The product to check if it can be deleted
-	 * @return true if product can be deleted, otherwise false
+	 * @return true if product can be deleted (meaning that there
+	 * are no items associated with this product), otherwise false
 	 */
 	public boolean canDeleteProduct(Product product) {
+		if (product.getItems().size() == 0)
+			return true;
 		return false;
 	}	
 	
@@ -123,7 +133,8 @@ public abstract class ProductContainer extends Model {
 	 * @param productGroup The ProductGroup to delete
 	 */
 	public void deleteProductGroup(ProductGroup productGroup) {
-		_productGroups.remove(productGroup);
+		if (canDeleteProductGroup(productGroup))
+			_productGroups.remove(productGroup);
 	}	
 	
 	/**
@@ -132,7 +143,7 @@ public abstract class ProductContainer extends Model {
 	 * @return true if productGroup can be deleted, otherwise false
 	 */
 	public boolean canDeleteProductGroup(ProductGroup productGroup) {
-		return false;
+		return true;
 	}	
 		
 	/**
@@ -163,7 +174,8 @@ public abstract class ProductContainer extends Model {
 	* Static method for unit testing purposes.
 	* @return true if success
 	*/
-	public static boolean Test(){
+	public static boolean Test() {
+		junit.framework.Assert.assertEquals(true, true);
 		return true;
 	}
 }

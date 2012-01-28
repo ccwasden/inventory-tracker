@@ -9,7 +9,7 @@ import java.util.SortedSet;
 @SuppressWarnings("serial")
 public class StorageUnit extends ProductContainer {
 	
-	private SortedSet<Item> _items;
+	private ItemList _items;
 	private StorageUnitManager _storageUnitManager;
 	
 	// Constructors
@@ -28,7 +28,7 @@ public class StorageUnit extends ProductContainer {
 	/**
 	 * @return The Items this StorageUnit contains
 	 */
-	public SortedSet<Item> getItems() {
+	public ItemList getItems() {
 		return _items;
 	}	
 	
@@ -43,7 +43,7 @@ public class StorageUnit extends ProductContainer {
 	/**
 	 * Sets the Items this StorageUnit contains
 	 */
-	public void setItems(SortedSet<Item> items) {
+	public void setItems(ItemList items) {
 		_items = items;
 	}	
 	
@@ -60,9 +60,10 @@ public class StorageUnit extends ProductContainer {
 	 * @param items The collection of items to be added
 	 * @return The number of items that were added
 	 */
-	public int addItems(SortedSet<Item> items) {
+	public int addItems(ItemList items) {
+		int prevSize = _items.size();
 		_items.addAll(items);
-		return items.size();
+		return (_items.size() - prevSize);
 	}	
 	
 	/**
@@ -70,7 +71,7 @@ public class StorageUnit extends ProductContainer {
 	 * @param items The collection of Items to check if they can be added
 	 * @return true if the items can be added, otherwise false
 	 */
-	public boolean canAddItems(SortedSet<Item> items) {
+	public boolean canAddItems(ItemList items) {
 		return false;
 	}	
 	

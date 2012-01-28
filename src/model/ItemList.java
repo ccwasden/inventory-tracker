@@ -27,6 +27,22 @@ public class ItemList extends Model {
 	}
 	
 	/**
+	 * @return the number of items in this list
+	 */
+	public int size() {
+		return _items.size();
+	}
+	
+	public void addAll(ItemList items) {
+		SortedSet<Item> itemSet = items.getItems();
+		_items.addAll(itemSet);
+	}
+		
+	public void remove(Item item) {
+		_items.remove(item);
+	}
+	
+	/**
 	* Static method for unit testing purposes.
 	* @return true if success
 	*/
