@@ -1,6 +1,7 @@
 package model;
 
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * A ProductContainer is a generic term for StorageUnits and ProductGroups. 
@@ -11,6 +12,11 @@ import java.util.SortedSet;
 public abstract class ProductContainer extends Model {
 	
 	private String _name;	
+	
+	/**
+	 * The StorageUnit that contains this ProductContainer
+	 */
+	private StorageUnit _storageUnit;
 	
 	/**
 	 * The collection of ProductGroups that this ProductContainer contains
@@ -26,8 +32,10 @@ public abstract class ProductContainer extends Model {
 	/**
 	 * Constructs a new instance of a ProductContainer
 	 */
-	public ProductContainer() {
-		
+	public ProductContainer(String name) {
+		setName(name);
+		setProductGroups(new TreeSet<ProductGroup>());
+		setProducts(new TreeSet<Product>());
 	}	
 	
 	// Accessors
@@ -80,7 +88,7 @@ public abstract class ProductContainer extends Model {
 	 * @param productGroup The ProductGroup to be added
 	 */
 	public void addProductGroup(ProductGroup productGroup) {
-		
+		_productGroups.add(productGroup);
 	}	
 	
 	/**
@@ -98,7 +106,7 @@ public abstract class ProductContainer extends Model {
 	 * @param product The product to be deleted
 	 */
 	public void deleteProduct(Product product) {
-		
+		_products.remove(product);
 	}	
 	
 	/**
@@ -115,7 +123,7 @@ public abstract class ProductContainer extends Model {
 	 * @param productGroup The ProductGroup to delete
 	 */
 	public void deleteProductGroup(ProductGroup productGroup) {
-		
+		_productGroups.remove(productGroup);
 	}	
 	
 	/**
@@ -141,7 +149,7 @@ public abstract class ProductContainer extends Model {
 	 * @return The StorageUnit containing this ProductContainer
 	 */
 	public StorageUnit getStorageUnit() {
-		return null;
+		return _storageUnit;
 	}
 	
 	/**
