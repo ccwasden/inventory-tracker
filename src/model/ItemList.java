@@ -25,4 +25,11 @@ public class ItemList {
 		_items = items;
 	}
 	
+	/**
+	* Static method for unit testing purposes.
+	* @return true if success
+	*/
+	public static boolean Test(){
+		return true;
+	}
 }

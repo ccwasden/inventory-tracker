@@ -50,4 +50,12 @@ class Size {
 	public void setUnits(SizeUnits units) {
 		_units = units;
 	}
+	
+	/**
+	* Static method for unit testing purposes.
+	* @return true if success
+	*/
+	public static boolean Test(){
+		return true;
+	}
 }

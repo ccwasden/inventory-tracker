@@ -29,4 +29,12 @@ public class Barcode {
 	public void setCode(String code) {
 		
 	}
+	
+	/**
+	* Static method for unit testing purposes.
+	* @return true if success
+	*/
+	public static boolean Test(){
+		return true;
+	}
 }

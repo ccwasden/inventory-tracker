@@ -70,4 +70,12 @@ public class ProductGroup extends ProductContainer {
 	public boolean canEditProductGroup(ProductGroup productGroup) {
 		return false;
 	}	
+	
+	/**
+	* Static method for unit testing purposes.
+	* @return true if success
+	*/
+	public static boolean Test(){
+		return true;
+	}
 }

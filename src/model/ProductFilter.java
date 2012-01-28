@@ -12,4 +12,12 @@ public class ProductFilter {
     public boolean productInFilter(Product product) {
     	return false;
     }
+    
+    /**
+	* Static method for unit testing purposes.
+	* @return true if success
+	*/
+	public static boolean Test(){
+		return true;
+	}
 }

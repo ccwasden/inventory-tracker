@@ -42,4 +42,12 @@ public class ProductManager {
      */    
     public ArrayList<Product> getProductsOfFilter(ProductFilter filter){return null;}
     
+    /**
+	* Static method for unit testing purposes.
+	* @return true if success
+	*/
+	public static boolean Test(){
+		return true;
+	}
+    
 }

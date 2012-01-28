@@ -13,7 +13,9 @@ public class ItemManager {
      * Constructs a new ItemManager
      *
      */
-    public ItemManager(){}
+    public ItemManager(){
+    	
+    }
     
     /**
      * Constructs a new ItemManager with specified Items 
@@ -36,4 +38,12 @@ public class ItemManager {
      *
      */
     public void markDeleted(Item item){}
+    
+    /**
+	* Static method for unit testing purposes.
+	* @return true if success
+	*/
+	public static boolean Test(){
+		return true;
+	}
 }
