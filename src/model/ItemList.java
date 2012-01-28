@@ -1,6 +1,6 @@
 package model;
 
-import java.util.SortedSet;
+import java.util.*;
 
 @SuppressWarnings("serial")
 public class ItemList extends Model {
@@ -42,6 +42,20 @@ public class ItemList extends Model {
 		_items.remove(item);
 	}
 	
+	/**
+	 * @return a read-only iterator
+	 */
+	public Iterator<Item> iterator() {
+		return Collections.unmodifiableSet(_items).iterator();
+	}
+	
+	/**
+	 * @return whether or not this ItemList contains the specified item
+	 */
+	public boolean contains(Item item) {
+		return _items.contains(item);
+	}
+
 	/**
 	* Static method for unit testing purposes.
 	* @return true if success

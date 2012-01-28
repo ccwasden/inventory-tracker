@@ -1,7 +1,5 @@
 package model;
 
-import java.util.SortedSet;
-
 /**
  * A StorageUnit is a room, closet, pantry, cupboard, or some other
  * enclosed area where items can be stored.
@@ -81,7 +79,7 @@ public class StorageUnit extends ProductContainer {
 	 * StorageUnit
 	 * @param name The new name to be associated with this StorageUnit
 	 */
-	public void editStorageUnit(String name, SortedSet<Item> items) {
+	public void editStorageUnit(String name, ItemList items) {
 		
 	}	
 	
@@ -125,7 +123,7 @@ public class StorageUnit extends ProductContainer {
 	 * @param productContainer The ProductContainer where items should be 
 	 * transferred
 	 */
-	public int transferItems(SortedSet<Item> items, 
+	public int transferItems(ItemList items, 
 			ProductContainer productContainer) {
 		return 0;
 	}	
@@ -134,7 +132,7 @@ public class StorageUnit extends ProductContainer {
 	 * @param product The Product to return all of its associated Items
 	 * @return the Items associated with a given Product
 	 */
-	public SortedSet<Item> getItemsOfProduct(Product product) {
+	public ItemList getItemsOfProduct(Product product) {
 		return null;
 	}
 	
@@ -143,7 +141,7 @@ public class StorageUnit extends ProductContainer {
 	 * @param itemFilter The filter to apply to the Items
 	 * @return A collection of Items that apply to itemFilter
 	 */
-	public SortedSet<Item> getItemsOfFilter(ItemFilter itemFilter) {
+	public ItemList getItemsOfFilter(ItemFilter itemFilter) {
 		return null;
 	}	
 

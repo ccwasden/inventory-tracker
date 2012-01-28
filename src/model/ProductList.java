@@ -1,6 +1,6 @@
 package model;
 
-import java.util.SortedSet;
+import java.util.*;
 
 @SuppressWarnings("serial")
 public class ProductList extends Model {
@@ -35,6 +35,20 @@ public class ProductList extends Model {
 	
 	public void remove(Product product) {
 		_products.remove(product);
+	}
+	
+	/**
+	 * @return a read-only iterator
+	 */
+	public Iterator<Product> iterator() {
+		return Collections.unmodifiableSet(_products).iterator();
+	}
+	
+	/**
+	 * @return whether or not this ProductList contains the specified item
+	 */
+	public boolean contains(Product product) {
+		return _products.contains(product);
 	}
 
 	/**

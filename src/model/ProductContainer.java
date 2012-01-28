@@ -151,7 +151,7 @@ public abstract class ProductContainer extends Model {
 	 * @param productFilter The filter to be applied to the products
 	 * @return All products that apply to the productFilter
 	 */
-	public SortedSet<Product> getProductsOfFilter(ProductFilter productFilter) { 
+	public ProductList getProductsOfFilter(ProductFilter productFilter) { 
 		return null;
 	}	
 	
@@ -167,7 +167,18 @@ public abstract class ProductContainer extends Model {
 	 * @return The ProductGroup containing a given Product
 	 */
 	public ProductGroup getProductGroupContaining(Product product) {
+		for (ProductGroup pg : _productGroups)
+			if (pg.contains(product))
+				return pg;
 		return null;
+	}
+	
+	/**
+	 * @return whether or not this ProductContainer contains the specified
+	 * product in its immediate list of products
+	 */
+	public boolean contains(Product product) {
+		return _products.contains(product);
 	}
 	
 	/**
