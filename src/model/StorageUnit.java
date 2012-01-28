@@ -6,6 +6,7 @@ import java.util.SortedSet;
  * A StorageUnit is a room, closet, pantry, cupboard, or some other
  * enclosed area where items can be stored.
  */
+@SuppressWarnings("serial")
 public class StorageUnit extends ProductContainer {
 	
 	private SortedSet<Item> _items;
