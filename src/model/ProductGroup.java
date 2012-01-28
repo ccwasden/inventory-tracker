@@ -7,13 +7,8 @@ package model;
 @SuppressWarnings("serial")
 public class ProductGroup extends ProductContainer {
 
-	private float _threeMonthSupply;	
-	
-	/**
-	 * The unit of measurement used in threeMonthSupply (i.e. "pounds", "count", "ounces") 
-	 */
-	private String _unitOfMeasurement;
-		
+	private Size _threeMonthSupply;	
+			
 	// Constructors
 	/**
 	 * Constructs a new instance of a ProductGroup
@@ -27,33 +22,18 @@ public class ProductGroup extends ProductContainer {
 	 * @return The amount of this ProductGroup that's needed for a three
 	 * month supply
 	 */
-	public float getThreeMonthSupply() {
+	public Size getThreeMonthSupply() {
 		return _threeMonthSupply;
 	}	
-	
-	/**
-	 * @return The unit of measurement used for the three month supply
-	 */
-	public String getUnitOfMeasurement() {
-		return _unitOfMeasurement;
-	}	
-	
+		
 	// Mutators
 	/**
 	 * Sets the three month supply for this ProductGroup
 	 */
-	public void setThreeMonthSupply(float threeMonthSupply) {
+	public void setThreeMonthSupply(Size threeMonthSupply) {
 		_threeMonthSupply = threeMonthSupply;
 	}	
-	
-	/**
-	 * Sets the unit of measurement used for the three month supply
-	 * for this ProductGroup
-	 */
-	public void setUnitOfMeasurement(String unitOfMeasurement) {
-		_unitOfMeasurement = unitOfMeasurement;
-	}	
-	
+		
 	// Class methods
 	/**
 	 * Edits the attributes of a particular ProductGroup
