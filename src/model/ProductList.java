@@ -26,6 +26,10 @@ public class ProductList extends Model {
 		_products = products;
 	}
 	
+	public void add(Product product) {
+		_products.add(product);
+	}
+	
 	/**
 	 * @return the number of products in this list
 	 */

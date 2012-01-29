@@ -175,7 +175,7 @@ public abstract class ProductContainer extends Model {
 	
 	/**
 	 * @return whether or not this ProductContainer contains the specified
-	 * product in its immediate list of products
+	 * product in its immediate list of products (not recursive sub-directories)
 	 */
 	public boolean contains(Product product) {
 		return _products.contains(product);

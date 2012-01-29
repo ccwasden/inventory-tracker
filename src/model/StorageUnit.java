@@ -70,7 +70,8 @@ public class StorageUnit extends ProductContainer {
 	 * @return true if the items can be added, otherwise false
 	 */
 	public boolean canAddItems(ItemList items) {
-		return false;
+		// As far as the model is concerned, I'm pretty sure you can always add items
+		return true;
 	}	
 	
 	/**
@@ -80,15 +81,20 @@ public class StorageUnit extends ProductContainer {
 	 * @param name The new name to be associated with this StorageUnit
 	 */
 	public void editStorageUnit(String name, ItemList items) {
-		
+		setName(name);
+		setItems(items);
 	}	
 	
 	/**
 	 * Checks to see if this StorageUnit can be edited in a particular way
 	 * @return true if this StorageUnit can be edited, otherwise false
 	 */
-	public boolean canEditStorageUnit() {
-		return false;
+	public boolean canEditStorageUnit(String name) {
+		if (name == "")
+			return false;
+		// Make sure to also have a check above this to make sure that there
+		// are no other StorageUnits with the same name
+		return true;
 	}	
 	
 	/**
@@ -96,7 +102,8 @@ public class StorageUnit extends ProductContainer {
 	 * @param item The Item to be removed
 	 */
 	public void removeItem(Item item) {
-		_items.remove(item);
+		if (canRemoveItem(item))
+			_items.remove(item);
 	}	
 	
 	/**
@@ -105,7 +112,8 @@ public class StorageUnit extends ProductContainer {
 	 * @return true if item can be removed, otherwise false
 	 */
 	public boolean canRemoveItem(Item item) {
-		return false;
+		// I'm pretty sure you can always remove an item without checking anything
+		return true;
 	}	
 	
 	/**
@@ -114,7 +122,7 @@ public class StorageUnit extends ProductContainer {
 	 * @param product The product to be added
 	 */
 	public void addProduct(Product product) {
-		
+		getProducts().add(product);
 	}	
 	
 	/**
@@ -125,6 +133,7 @@ public class StorageUnit extends ProductContainer {
 	 */
 	public int transferItems(ItemList items, 
 			ProductContainer productContainer) {
+
 		return 0;
 	}	
 		
