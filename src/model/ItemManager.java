@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Timestamp;
 import java.util.*; 
 
 /**
@@ -8,7 +9,7 @@ import java.util.*;
  */
 @SuppressWarnings("serial")
 public class ItemManager extends Model {
-    private ArrayList<Item> _items;
+    private ItemList _items;
     private HashMap<Item, StorageUnit> _itemToSUMap;
     private static ItemManager ref;
     
@@ -58,6 +59,19 @@ public class ItemManager extends Model {
      */
     public void putItemInStorageUnit(Item i, StorageUnit su){
     	_itemToSUMap.put(i, su);
+    }
+    
+    public Item createItem(Barcode barcode, Product product, StorageUnit storageUnit, Timestamp expirationDate){
+    	Item i = new Item(barcode, product, storageUnit, expirationDate);
+    	_items.addItem(i);
+    	return i;
+    }
+    
+    public Item createItem(Barcode barcode, Product product, StorageUnit storageUnit, Timestamp expirationDate,
+			Timestamp dateAdded, Timestamp dateRemoved){
+    	Item i = new Item(barcode, product, storageUnit, expirationDate, dateAdded, dateRemoved);
+    	_items.addItem(i);
+    	return i;
     }
     
     /**

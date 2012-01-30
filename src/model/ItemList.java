@@ -26,6 +26,10 @@ public class ItemList extends Model {
 		_items = items;
 	}
 	
+	public void addItem(Item i){
+		_items.add(i);
+	}
+	
 	/**
 	* Static method for unit testing purposes.
 	* @return true if success
