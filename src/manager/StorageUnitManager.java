@@ -92,6 +92,16 @@ public class StorageUnitManager extends Model {
     }
     
     /**
+     * Retrieves the ProductContainer associated with a product of a storage unit
+     * @param su the storage unit 
+     * @param p the product
+     * @return the product container
+     */
+	public ProductContainer getProductContainerOfSUProd(StorageUnit su, Product p){
+		return _productSUMap.get(new StorageUnitProduct(su, p));
+	}
+    
+    /**
 	* Static method for unit testing purposes.
 	* @return true if success
 	*/

@@ -1,7 +1,5 @@
 package test;
-import manager.ItemManager;
-import manager.ProductManager;
-import manager.StorageUnitManager;
+import manager.*;
 import model.*;
 
 public class Test {
@@ -16,8 +14,6 @@ public class Test {
 		StorageUnit.Test();
 		ProductContainer.Test();
 		ProductGroup.Test();
-		ProductList.Test();
-		ItemList.Test();
 		ProductContainerList.Test();
 		ItemFilter.Test();
 		ProductFilter.Test();
@@ -25,6 +21,8 @@ public class Test {
 		ProductManager.Test();
 //		Size.Test();
 		StorageUnitManager.Test();
+		InventoryTracker.Test();
+		
 		System.out.println("All tests passed.");
 	}
 

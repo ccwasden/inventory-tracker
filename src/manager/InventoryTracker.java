@@ -1,9 +1,12 @@
 package manager;
 
-import model.Model;
+import java.sql.Timestamp;
+
+import gui.common.SizeUnits;
+import model.*;
 
 @SuppressWarnings("serial")
-class InventoryTracker extends Model {
+public class InventoryTracker extends Model {
 	private StorageUnitManager _storageUnitManager;
 	private ProductManager _productManager;
 	private ItemManager _itemManager;
@@ -38,7 +41,13 @@ class InventoryTracker extends Model {
 	
 	public static boolean Test(){
 		InventoryTracker it = InventoryTracker.inst();
-		
+		StorageUnit su = new StorageUnit("Hello");
+		Product p = new Product(new Barcode("1234"), "Prod1234", 3, 
+				new Size(3, SizeUnits.Count), 22, "inch");
+		Item i = new Item(new Barcode("1234"), p, su, new Timestamp(0));
+		StorageUnitManager sum = StorageUnitManager.inst();
+		sum.addStorageUnit(su);
+		su.addItem(i);
 		
 		
 		return true;

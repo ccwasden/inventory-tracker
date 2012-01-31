@@ -12,6 +12,7 @@ import manager.StorageUnitManager;
 public class StorageUnit extends ProductContainer {
 	
 	private TreeSet<Item> _items;
+	private StorageUnitManager _sUnitManager;
 	
 	// Constructors
 	/**
@@ -20,6 +21,7 @@ public class StorageUnit extends ProductContainer {
 	public StorageUnit() {
 		super("");
 		_items = new TreeSet<Item>();
+		_sUnitManager = StorageUnitManager.inst();
 	}
 	
 	public StorageUnit(String name) {
@@ -54,6 +56,20 @@ public class StorageUnit extends ProductContainer {
 		return (_items.size() - prevSize);
 	}	
 	
+	/**
+	 * Adds Item to this StorageUnit
+	 * @param item The item to be added
+	 * @return false if not added
+	 */
+	public boolean addItem(Item item) {
+		_ensureProductIsInSubUnit(item.getProduct());
+		return _items.add(item);
+	}	
+	
+	private void _ensureProductIsInSubUnit(Product p){
+		boolean notYetAssociated = (null == _sUnitManager.getProductContainerOfSUProd(this, p));
+		if(notYetAssociated) _sUnitManager.putStorageUnitProductInContainer(this, p, this);
+	}
 	/**
 	 * Checks to see if a particular collection of Items can be added
 	 * @param items The collection of Items to check if they can be added

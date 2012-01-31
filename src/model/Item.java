@@ -38,6 +38,10 @@ public class Item extends Model {
 		setProduct(product);
 		setStorageUnit(storageUnit);
 		setExpirationDate(expirationDate);
+		
+		Calendar calendar = Calendar.getInstance();
+		java.util.Date now = calendar.getTime();
+		setDateAdded(new Timestamp(now.getTime()));
 	}
 
 

@@ -34,6 +34,10 @@ public class Product extends Model {
 		setSize(size);
 		setThreeMonthSupply(threeMonthSupply);
 		setUnitOfMeasurement(unitOfMeasurement);
+		
+		Calendar calendar = Calendar.getInstance();
+		java.util.Date now = calendar.getTime();
+		setCreationDate(new Timestamp(now.getTime()));
 	}
 
 	public Product(Barcode barcode, String description, float shelfLife, Size size,
