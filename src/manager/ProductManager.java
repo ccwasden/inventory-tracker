@@ -1,6 +1,11 @@
-package model;
+package manager;
 
 import java.util.*; 
+
+import model.Barcode;
+import model.Model;
+import model.Product;
+import model.ProductFilter;
 
 /**
  * Manager for all products
@@ -9,12 +14,31 @@ import java.util.*;
 @SuppressWarnings("serial")
 public class ProductManager extends Model {
     private ArrayList<Product> _products;
+    private static ProductManager ref;
+    
+    /**
+     * Singleton instance
+     * @return the instance
+     */
+    public static ProductManager inst(){
+    	if(ref == null) ref = new ProductManager();
+    	return ref;
+    }
+    
+    /**
+     * Singleton instance
+     * @return the instance
+     */
+    public static ProductManager inst(ProductManager pm){
+    	ref = pm;
+    	return ref;
+    }
     
     /**
      * Constructs a new ProductManager
      *
      */
-    public ProductManager(){}
+    private ProductManager(){}
     
     /**
      * Retrieves the product of the associated barcode

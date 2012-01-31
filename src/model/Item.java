@@ -2,6 +2,9 @@ package model;
 
 import java.sql.Timestamp;
 import java.util.*; 
+
+import manager.ItemManager;
+import manager.StorageUnitManager;
 import common.Result;
 
 /**
@@ -104,7 +107,7 @@ public class Item extends Model {
 	* @return The StorageUnit that this Item is in.
 	*/
 	public StorageUnit getStorageUnit() {
-		return ItemManager.getInstance().getStorageUnitOfItem(this);
+		return ItemManager.inst().getStorageUnitOfItem(this);
 	}
 
 
@@ -148,7 +151,7 @@ public class Item extends Model {
 	 * @param su The storage Unit
 	 */
 	public void setStorageUnit(StorageUnit su){
-		ItemManager.getInstance().putItemInStorageUnit(this, su);
+		ItemManager.inst().putItemInStorageUnit(this, su);
 	}
 	
 	/**
@@ -214,7 +217,7 @@ public class Item extends Model {
 	*/
 	public void moveItem(ProductContainer container) {
 		setStorageUnit(container.getStorageUnit());
-		StorageUnitManager.getInstance() // map a product associated with a storage unit to a container
+		StorageUnitManager.inst() // map a product associated with a storage unit to a container
 			.putStorageUnitProductInContainer(getStorageUnit(), getProduct(), container);
 	}
 

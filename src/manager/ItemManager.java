@@ -1,6 +1,10 @@
-package model;
+package manager;
 
 import java.util.*; 
+
+import model.Item;
+import model.Model;
+import model.StorageUnit;
 
 /**
  * Manager for items
@@ -22,8 +26,17 @@ public class ItemManager extends Model {
      * Singleton instance
      * @return the instance
      */
-    public static ItemManager getInstance(){
+    public static ItemManager inst(){
     	if(ref == null) ref = new ItemManager();
+    	return ref;
+    }
+    
+    /**
+     * Singleton instance
+     * @return the instance
+     */
+    public static ItemManager inst(ItemManager im){
+    	ref = im;
     	return ref;
     }
     

@@ -1,4 +1,7 @@
 package test;
+import manager.ItemManager;
+import manager.ProductManager;
+import manager.StorageUnitManager;
 import model.*;
 
 public class Test {

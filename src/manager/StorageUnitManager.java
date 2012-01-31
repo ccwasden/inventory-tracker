@@ -1,6 +1,15 @@
-package model;
+package manager;
 
 import java.util.*; 
+
+import model.Barcode;
+import model.Item;
+import model.ItemFilter;
+import model.Model;
+import model.Product;
+import model.ProductContainer;
+import model.StorageUnit;
+import model.StorageUnitProduct;
 
 /**
  * Manager for all storage units
@@ -18,9 +27,19 @@ public class StorageUnitManager extends Model {
      * Get Singleton
      * @return the singleton instance
      */
-    public static StorageUnitManager getInstance()
+    public static StorageUnitManager inst()
     {
       if (ref == null) ref = new StorageUnitManager();
+      return ref;
+    }
+    
+    /**
+     * Get Singleton
+     * @return the singleton instance
+     */
+    public static StorageUnitManager getInstance(StorageUnitManager sum)
+    {
+      ref = sum;
       return ref;
     }
     

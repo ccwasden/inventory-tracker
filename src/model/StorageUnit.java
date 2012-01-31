@@ -1,5 +1,7 @@
 package model;
 
+import manager.StorageUnitManager;
+
 /**
  * A StorageUnit is a room, closet, pantry, cupboard, or some other
  * enclosed area where items can be stored.

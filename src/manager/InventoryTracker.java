@@ -1,4 +1,6 @@
-package model;
+package manager;
+
+import model.Model;
 
 @SuppressWarnings("serial")
 class InventoryTracker extends Model {
@@ -7,10 +9,9 @@ class InventoryTracker extends Model {
 	private ItemManager _itemManager;
 
 	public InventoryTracker() {
-		_storageUnitManager = StorageUnitManager.getInstance();
-		// TODO is ProductManager not a singleton?
-		// _productManager = ProductManager.getInstance();
-		_itemManager = ItemManager.getInstance();							
+		_storageUnitManager = StorageUnitManager.inst();
+		 _productManager = ProductManager.inst();
+		_itemManager = ItemManager.inst();							
 	}
 
 	public StorageUnitManager getStorageUnitManager() {
