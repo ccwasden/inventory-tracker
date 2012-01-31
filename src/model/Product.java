@@ -184,16 +184,16 @@ public class Product extends Model {
 	* @param product The Product with updated values.
 	* @return A Result indicating success or failure.
 	*/
-	public Result canEditProduct(Product product) {
-		return null;
+	public boolean canEditProduct(Product product) {
+		return true;
 	}
 
 	/**
 	* Moves product to a new ProductContainer
 	* @param container The container to receive the Product.
 	*/
-	public Result moveProduct(ProductContainer container) {
-		return null;
+	public boolean moveProduct(ProductContainer container) {
+		return false;
 	}
 	
 	public int hashCode(){
