@@ -203,7 +203,6 @@ public abstract class ProductContainer extends Model {
 	* @return true if success
 	*/
 	public static boolean Test() {
-		junit.framework.Assert.assertEquals(true, true);
 		return true;
 	}
 }

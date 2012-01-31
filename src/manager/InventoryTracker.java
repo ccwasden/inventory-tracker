@@ -2,6 +2,8 @@ package manager;
 
 import java.sql.Timestamp;
 
+import org.json.JSONObject;
+
 import gui.common.SizeUnits;
 import model.*;
 
@@ -51,5 +53,11 @@ public class InventoryTracker extends Model {
 		
 		
 		return true;
+	}
+
+	public static InventoryTracker fromJSON(JSONObject json) throws ImportException {
+		InventoryTracker it = inst();
+		
+		return it;
 	}
 }
