@@ -197,8 +197,8 @@ public class Item extends Model {
 	* 			and a message as to why not if invalid.
 	* @post If was able to edit, this Item will now be updated with the values of the parameter.
 	*/
-	public Result editItem(Item item) {
-		return null;
+	public boolean editItem(Item item) {
+		return true;
 	}
 
 
@@ -207,8 +207,8 @@ public class Item extends Model {
 	* @return A Result indicating whether or not the parameter is a valid change,
 	* 			and a message as to why not if invalid.
 	*/
-	public Result canEditItem(Item item) {
-		return null;
+	public boolean canEditItem(Item item) {
+		return true;
 	}
 
 	/**

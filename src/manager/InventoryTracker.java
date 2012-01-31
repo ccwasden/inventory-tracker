@@ -7,8 +7,18 @@ class InventoryTracker extends Model {
 	private StorageUnitManager _storageUnitManager;
 	private ProductManager _productManager;
 	private ItemManager _itemManager;
+	private static InventoryTracker ref;
 
-	public InventoryTracker() {
+	public static InventoryTracker inst(){
+		if(ref == null) ref = new InventoryTracker();
+		return ref;
+	}
+	
+	public static void inst(InventoryTracker it){
+		ref = it;
+	}
+	
+	private InventoryTracker() {
 		_storageUnitManager = StorageUnitManager.inst();
 		 _productManager = ProductManager.inst();
 		_itemManager = ItemManager.inst();							
@@ -24,5 +34,13 @@ class InventoryTracker extends Model {
 
 	public ItemManager getItemManager() {
 		return _itemManager;
+	}
+	
+	public static boolean Test(){
+		InventoryTracker it = InventoryTracker.inst();
+		
+		
+		
+		return true;
 	}
 }

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.TreeSet;
+
 import manager.StorageUnitManager;
 
 /**
@@ -9,8 +11,7 @@ import manager.StorageUnitManager;
 @SuppressWarnings("serial")
 public class StorageUnit extends ProductContainer {
 	
-	private ItemList _items;
-	private StorageUnitManager _storageUnitManager;
+	private TreeSet<Item> _items;
 	
 	// Constructors
 	/**
@@ -18,6 +19,7 @@ public class StorageUnit extends ProductContainer {
 	 */
 	public StorageUnit() {
 		super("");
+		_items = new TreeSet<Item>();
 	}
 	
 	public StorageUnit(String name) {
@@ -28,31 +30,17 @@ public class StorageUnit extends ProductContainer {
 	/**
 	 * @return The Items this StorageUnit contains
 	 */
-	public ItemList getItems() {
+	public TreeSet<Item> getItems() {
 		return _items;
 	}	
-	
-	/** 
-	 * @return The StorageUnitManager this StorageUnit contains
-	 */
-	public StorageUnitManager getStorageUnitManager() {
-		return _storageUnitManager;
-	}
 	
 	// Mutators
 	/**
 	 * Sets the Items this StorageUnit contains
 	 */
-	public void setItems(ItemList items) {
+	public void setItems(TreeSet<Item> items) {
 		_items = items;
 	}	
-	
-	/**
-	 * Sets the StorageUnitManager this StorageUnit contains
-	 */
-	public void setStorageUnitManager(StorageUnitManager storageUnitManager) {
-		_storageUnitManager = storageUnitManager;
-	}
 	
 	// Class Methods
 	/**
@@ -60,7 +48,7 @@ public class StorageUnit extends ProductContainer {
 	 * @param items The collection of items to be added
 	 * @return The number of items that were added
 	 */
-	public int addItems(ItemList items) {
+	public int addItems(TreeSet<Item> items) {
 		int prevSize = _items.size();
 		_items.addAll(items);
 		return (_items.size() - prevSize);
@@ -71,7 +59,7 @@ public class StorageUnit extends ProductContainer {
 	 * @param items The collection of Items to check if they can be added
 	 * @return true if the items can be added, otherwise false
 	 */
-	public boolean canAddItems(ItemList items) {
+	public boolean canAddItems(TreeSet<Item> items) {
 		// As far as the model is concerned, I'm pretty sure you can always add items
 		return true;
 	}	
@@ -82,7 +70,7 @@ public class StorageUnit extends ProductContainer {
 	 * StorageUnit
 	 * @param name The new name to be associated with this StorageUnit
 	 */
-	public void editStorageUnit(String name, ItemList items) {
+	public void editStorageUnit(String name, TreeSet<Item> items) {
 		setName(name);
 		setItems(items);
 	}	
@@ -133,7 +121,7 @@ public class StorageUnit extends ProductContainer {
 	 * @param productContainer The ProductContainer where items should be 
 	 * transferred
 	 */
-	public int transferItems(ItemList items, 
+	public int transferItems(TreeSet<Item> items, 
 			ProductContainer productContainer) {
 
 		return 0;
@@ -143,7 +131,7 @@ public class StorageUnit extends ProductContainer {
 	 * @param product The Product to return all of its associated Items
 	 * @return the Items associated with a given Product
 	 */
-	public ItemList getItemsOfProduct(Product product) {
+	public TreeSet<Item> getItemsOfProduct(Product product) {
 		return null;
 	}
 	
@@ -152,9 +140,9 @@ public class StorageUnit extends ProductContainer {
 	 * @param itemFilter The filter to apply to the Items
 	 * @return A collection of Items that apply to itemFilter
 	 */
-	public ItemList getItemsOfFilter(ItemFilter itemFilter) {
+	public TreeSet<Item> getItemsOfFilter(ItemFilter itemFilter) {
 		return null;
-	}	
+	}
 
 	/**
 	* Static method for unit testing purposes.

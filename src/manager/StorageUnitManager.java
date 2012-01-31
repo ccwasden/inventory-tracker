@@ -17,10 +17,8 @@ import model.StorageUnitProduct;
  */
 @SuppressWarnings("serial")
 public class StorageUnitManager extends Model {
-//    private ItemManager _itemManager;
-//    private ProductManager _productManager;
-//    private ArrayList<StorageUnit> _storageUnits;
     private HashMap<StorageUnitProduct, ProductContainer> _productSUMap;
+    private TreeSet<StorageUnit> _storageUnits;
     private static StorageUnitManager ref;
 
     /**
@@ -46,7 +44,9 @@ public class StorageUnitManager extends Model {
     /**
      * private constructor
      */
-    private StorageUnitManager(){}
+    private StorageUnitManager(){
+    	_productSUMap = new HashMap<StorageUnitProduct, ProductContainer>();
+    }
     
     /**
      * Retrieves the length of the document (number of characters)
@@ -54,14 +54,18 @@ public class StorageUnitManager extends Model {
      * @return true if successfully added, else false
      *
      */
-    public boolean addStorageUnit(StorageUnit unit){return false;}
+    public boolean addStorageUnit(StorageUnit unit){
+    	return _storageUnits.add(unit);
+    }
     
     /**
      * Removes StorageUnit specified
-     * @param unit (StorageUnit) The unit to delete
+     * @param unit <StorageUnit> The unit to delete
      *
      */    
-    public void deleteStorageUnit(StorageUnit unit){}
+    public boolean deleteStorageUnit(StorageUnit unit){
+    	return _storageUnits.remove(unit);
+    }
     
     /**
      * Retrieves the storage unit of the associated name
@@ -73,42 +77,9 @@ public class StorageUnitManager extends Model {
     
     /**
      * Retrieves all Storage Units 
-     * @return ArrayList<StorageUnit> The list of all storage units
+     * @return TreeSet<StorageUnit> The list of all storage units
      */    
-    public ArrayList<StorageUnit> getAllStorageUnits(){return null;}
-    
-    /**
-     * Getter for the product manager
-     * @return ProductManager The Product Manager
-     */
-    public ProductManager getProductManager(){return null;}
-    
-    /**
-     * Getter for the item manager
-     * @return ItemManager The Item Manager
-     */
-    public ItemManager getItemManager(){return null;}
-    
-    /**
-     * Removes Item
-     * @param item (Item) The item to remove
-     *
-     */    
-    public void removeItem(Item item){}
-    
-    /**
-     * Get Item of associated barcode
-     * @param barcode (Barcode) The barcode of the item to retrieve
-     * @return Item The item of the barcode passed in
-     */    
-    public Item getItem(Barcode barcode){return null;}
-    
-    /**
-     * Retrieves all items that apply to the filter
-     * @param filter (ItemFilter) The filter to run on each item
-     * @return ArrayList<Item> The list of items that apply to the filter
-     */    
-    public ArrayList<Item> getItemsOfFilter(ItemFilter filter){return null;}
+    public TreeSet<StorageUnit> getAllStorageUnits(){return null;}
     
     /**
      * Maps a storage unit and product to a product container 

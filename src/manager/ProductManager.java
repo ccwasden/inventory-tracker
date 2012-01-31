@@ -13,7 +13,7 @@ import model.ProductFilter;
  */
 @SuppressWarnings("serial")
 public class ProductManager extends Model {
-    private ArrayList<Product> _products;
+    private TreeSet<Product> _products;
     private static ProductManager ref;
     
     /**
@@ -38,7 +38,9 @@ public class ProductManager extends Model {
      * Constructs a new ProductManager
      *
      */
-    private ProductManager(){}
+    private ProductManager(){
+    	_products = new TreeSet<Product>();
+    }
     
     /**
      * Retrieves the product of the associated barcode

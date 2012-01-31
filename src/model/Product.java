@@ -28,12 +28,23 @@ public class Product extends Model {
 	 */
 	public Product(Barcode barcode, String description, float shelfLife, Size size,
 								int threeMonthSupply, String unitOfMeasurement) {
-		
+		setBarcode(barcode);
+		setDescription(description);
+		setShelfLife(shelfLife);
+		setSize(size);
+		setThreeMonthSupply(threeMonthSupply);
+		setUnitOfMeasurement(unitOfMeasurement);
 	}
 
 	public Product(Barcode barcode, String description, float shelfLife, Size size,
 						int threeMonthSupply, String unitOfMeasurement, Timestamp creationDate) {
-		
+		setBarcode(barcode);
+		setDescription(description);
+		setShelfLife(shelfLife);
+		setSize(size);
+		setThreeMonthSupply(threeMonthSupply);
+		setUnitOfMeasurement(unitOfMeasurement);
+		setCreationDate(creationDate);
 	}
 
 	//////////////////////ACCESSORS/////////////////////////////
@@ -92,11 +103,11 @@ public class Product extends Model {
 	* Gets an ItemList of Item's that are instances of this Product.
 	* @return The list of Items associated with this product.
 	*/
-	public ItemList getItems() {
+	public TreeSet<Item> getItems() {
 		return null;
 	}
 
-	//////////////////////MUTATORS////////////////////////////////
+	//////////////////////////MUTATORS////////////////////////////////
 
 	/**
 	* Sets the Product's creation date. This method should only be called upon
@@ -104,7 +115,7 @@ public class Product extends Model {
 	* @param date A Timestamp with the creation date of this Item.
 	*/
 	private void setCreationDate(Timestamp date) {
-		
+		_creationDate = date;
 	}
 
 	/**
@@ -112,7 +123,7 @@ public class Product extends Model {
 	* @param barcode The Product's Barcode.
 	*/
 	public void setBarcode(Barcode barcode) {
-		
+		_barcode = barcode;
 	}
 
 	/**
@@ -120,7 +131,7 @@ public class Product extends Model {
 	* @param description The Product's description.
 	*/
 	public void setDescription(String description) {
-		
+		_description = description;
 	}
 
 	/**
@@ -128,7 +139,7 @@ public class Product extends Model {
 	* @param shelfLife The Product's shelf life in months.
 	*/
 	public void setShelfLife(float shelfLife) {
-		
+		_shelfLife = shelfLife;
 	}
 
 	/**
@@ -136,7 +147,23 @@ public class Product extends Model {
 	* @param threeMonthSupply The Product's ThreeMonthSupply
 	*/
 	public void setThreeMonthSupply(int threeMonthSupply) {
-		
+		_threeMonthSupply = threeMonthSupply;
+	}
+	
+	/**
+	* Sets the Product's unit of measure.
+	* @param unitOfMeasure The Product's unitOfMeasure
+	*/
+	public void setUnitOfMeasurement(String unitOfMeasure) {
+		_unitOfMeasurement = unitOfMeasure;
+	}
+	
+	/**
+	 * Sets the size
+	 * @param s the size to set
+	 */
+	public void setSize(Size s){
+		_size = s;
 	}
 
 	/**
@@ -163,6 +190,10 @@ public class Product extends Model {
 	*/
 	public Result moveProduct(ProductContainer container) {
 		return null;
+	}
+	
+	public int hashCode(){
+		return _barcode.hashCode();
 	}
 	
 	/**

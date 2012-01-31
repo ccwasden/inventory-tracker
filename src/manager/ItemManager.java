@@ -12,7 +12,7 @@ import model.StorageUnit;
  */
 @SuppressWarnings("serial")
 public class ItemManager extends Model {
-    private ArrayList<Item> _items;
+    private TreeSet<Item> _items;
     private HashMap<Item, StorageUnit> _itemToSUMap;
     private static ItemManager ref;
     
@@ -20,7 +20,10 @@ public class ItemManager extends Model {
      * Constructs a new ItemManager
      *
      */
-    private ItemManager(){}
+    private ItemManager(){
+    	_itemToSUMap = new HashMap<Item, StorageUnit>();
+    	_items = new TreeSet<Item>();
+    }
     
     /**
      * Singleton instance

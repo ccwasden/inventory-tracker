@@ -12,7 +12,7 @@ public class Barcode extends Model {
 	* @param code The value of the Barcode
 	*/
 	public Barcode(String code) {
-		
+		_code = code;
 	}
 
 	/**
@@ -28,7 +28,7 @@ public class Barcode extends Model {
 	* @param code The new value for the Barcode.
 	*/
 	public void setCode(String code) {
-		
+		_code = code;
 	}
 	
 	/**

@@ -21,12 +21,12 @@ public abstract class ProductContainer extends Model {
 	/**
 	 * The collection of ProductGroups that this ProductContainer contains
 	 */
-	private SortedSet<ProductGroup> _productGroups;	
+	private TreeSet<ProductGroup> _productGroups;	
 	
 	/**
 	 * The Products this ProductContainer contains
 	 */
-	private ProductList _products;
+	private TreeSet<Product> _products;
 	
 	// Constructors
 	/**
@@ -35,7 +35,7 @@ public abstract class ProductContainer extends Model {
 	public ProductContainer(String name) {
 		setName(name);
 		setProductGroups(new TreeSet<ProductGroup>());
-		setProducts(new ProductList(new TreeSet<Product>()));
+		setProducts(new TreeSet<Product>());
 	}	
 	
 	// Accessors
@@ -56,7 +56,7 @@ public abstract class ProductContainer extends Model {
 	/**
 	 * @return The Products this ProductContainer contains
 	 */
-	public ProductList getProducts() {
+	public TreeSet<Product> getProducts() {
 		return _products;
 	}	
 	
@@ -71,14 +71,14 @@ public abstract class ProductContainer extends Model {
 	/**
 	 * Sets the collection of ProductGroups this ProductContainer contains
 	 */
-	public void setProductGroups(SortedSet<ProductGroup> productGroups) {
+	public void setProductGroups(TreeSet<ProductGroup> productGroups) {
 		_productGroups = productGroups;
 	}	
 	
 	/**
 	 * Sets the collection of Products this ProductContainer contains
 	 */
-	public void setProducts(ProductList products) {
+	public void setProducts(TreeSet<Product> products) {
 		_products = products;
 	}		
 	
@@ -151,7 +151,7 @@ public abstract class ProductContainer extends Model {
 	 * @param productFilter The filter to be applied to the products
 	 * @return All products that apply to the productFilter
 	 */
-	public ProductList getProductsOfFilter(ProductFilter productFilter) { 
+	public TreeSet<Product> getProductsOfFilter(ProductFilter productFilter) { 
 		return null;
 	}	
 	
@@ -179,6 +179,10 @@ public abstract class ProductContainer extends Model {
 	 */
 	public boolean contains(Product product) {
 		return _products.contains(product);
+	}
+	
+	public int hashCode(){
+		return _name.hashCode();
 	}
 	
 	/**
