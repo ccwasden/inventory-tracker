@@ -46,6 +46,7 @@ public class StorageUnitManager extends Model {
      */
     private StorageUnitManager(){
     	_productSUMap = new HashMap<StorageUnitProduct, ProductContainer>();
+    	_storageUnits = new TreeSet<StorageUnit>();
     }
     
     /**

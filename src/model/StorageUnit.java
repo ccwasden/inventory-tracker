@@ -26,6 +26,8 @@ public class StorageUnit extends ProductContainer {
 	
 	public StorageUnit(String name) {
 		super(name);
+		_items = new TreeSet<Item>();
+		_sUnitManager = StorageUnitManager.inst();
 	}	
 	
 	// Accessors
