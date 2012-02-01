@@ -3,15 +3,15 @@ package model;
 /**
 * Represents a Barcode.
 */
-@SuppressWarnings("serial")
-public class Barcode extends Model {
-	private String _code;
+@SuppressWarnings({ "serial", "rawtypes" })
+public class Barcode extends Model implements Comparable {
+	private long _code;
 
 	/**
 	* Constructs a new Barcode object.
 	* @param code The value of the Barcode
 	*/
-	public Barcode(String code) {
+	public Barcode(int code) {
 		_code = code;
 	}
 
@@ -19,7 +19,7 @@ public class Barcode extends Model {
 	* Gets the Barcode's code.
 	* @return The Barcode's number.
 	*/
-	public String getCode() {
+	public long getCode() {
 		return _code;
 	}
 
@@ -27,7 +27,7 @@ public class Barcode extends Model {
 	* Sets the Barcode's code.
 	* @param code The new value for the Barcode.
 	*/
-	public void setCode(String code) {
+	public void setCode(int code) {
 		_code = code;
 	}
 	
@@ -41,6 +41,14 @@ public class Barcode extends Model {
 	
 	@Override
 	public int hashCode(){
-		return getCode().hashCode();
+		return (int) _code;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		long otherCode = ((Barcode)o).getCode();
+		if(getCode() > otherCode) return 1;
+		if(getCode() < otherCode) return -1;
+		return 0;
 	}
 }

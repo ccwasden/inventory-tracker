@@ -2,6 +2,10 @@ package manager;
 
 import java.util.*; 
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import model.Barcode;
 import model.Model;
 import model.Product;
@@ -70,6 +74,16 @@ public class ProductManager extends Model {
 	*/
 	public static boolean Test(){
 		return true;
+	}
+
+	public static ProductManager fromJSON(JSONArray jsonArray) throws JSONException, ImportException {
+		ProductManager pm = inst();
+		System.out.println(jsonArray.length());
+		for(int i = 0; i < jsonArray.length(); i++)
+			pm._products.add(Product.fromJSON(jsonArray.getJSONObject(i)));
+		
+//		jsonObject.getNames(jo)
+		return pm;
 	}
     
 }

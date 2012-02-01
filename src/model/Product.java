@@ -3,7 +3,16 @@ package model;
 import gui.common.SizeUnits;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*; 
+
+import manager.ImportException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import common.Result;
 
 /**
@@ -11,14 +20,14 @@ import common.Result;
  * 
  */
 @SuppressWarnings("serial")
-public class Product extends Model {
+public class Product extends Model implements Comparable {
 	private Timestamp _creationDate;
 	private Barcode _barcode;
 	private String _description;
 	private float _shelfLife;
 	private Size _size;
 	private int _threeMonthSupply;
-	private String _unitOfMeasurement;
+//	private String _unitOfMeasurement;
 	private ProductContainerList _containers;
 
 
@@ -38,6 +47,12 @@ public class Product extends Model {
 			setThreeMonthSupply(threeMonthSupply);
 		}
 		catch (InvalidDataException e) { }
+								int threeMonthSupply) {
+		setBarcode(barcode);
+		setDescription(description);
+		setShelfLife(shelfLife);
+		setSize(size);
+		setThreeMonthSupply(threeMonthSupply);
 		
 		Calendar calendar = Calendar.getInstance();
 		java.util.Date now = calendar.getTime();
@@ -56,6 +71,13 @@ public class Product extends Model {
 		}
 		catch (InvalidDataException e) { }
 		
+						int threeMonthSupply, Timestamp creationDate) {
+		setBarcode(barcode);
+		setDescription(description);
+		setShelfLife(shelfLife);
+		setSize(size);
+		setThreeMonthSupply(threeMonthSupply);
+		setCreationDate(creationDate);
 	}
 
 	//////////////////////ACCESSORS/////////////////////////////
@@ -93,13 +115,6 @@ public class Product extends Model {
 	*/
 	public int getThreeMonthSupply() {
 		return _threeMonthSupply;
-	}
-
-	/**
-	* @return The Unit of measurement for the three month supply.
-	*/
-	public String getUnitOfMeasurement() {
-		return _unitOfMeasurement;
 	}
 
 	/**
@@ -217,5 +232,30 @@ public class Product extends Model {
 	*/
 	public static boolean Test(){
 		return true;
+	}
+
+	public static Product fromJSON(JSONObject jsonObject) throws ImportException, JSONException {
+		if(!jsonObject.has("barcode") || !jsonObject.has("description") 
+				|| !jsonObject.has("creation-date") || !jsonObject.has("size") 
+				|| !jsonObject.has("supply") || !jsonObject.has("shelf-life")) 
+			throw new ImportException("<product> misformatted");
+		try {
+			DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+			Date create = (Date)formatter.parse(jsonObject.getString("creation-date"));
+			Product p = new Product(new Barcode(jsonObject.getInt("barcode")), 
+					jsonObject.getString("description"),
+					(float) jsonObject.getDouble("shelf-life"), 
+					Size.fromString(jsonObject.getString("size")),
+					jsonObject.getInt("supply"),
+					new Timestamp(create.getTime()));
+			return p;
+		} catch (ParseException e) {
+			throw new ImportException("malformatted date");
+		}
+	}
+
+	@Override
+	public int compareTo(Object arg0) {
+		return getBarcode().compareTo(((Product)arg0).getBarcode());
 	}
 }

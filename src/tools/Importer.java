@@ -38,7 +38,9 @@ public class Importer {
 			try {
 				json = XML.toJSONObject(fileContents);
 				try {
-					InventoryTracker it = InventoryTracker.fromJSON(json);
+					
+					if(json.getJSONObject("inventory-tracker") == null) throw new ImportException("<inventory-tracker> tag not defined");
+					InventoryTracker it = InventoryTracker.fromJSON(json.getJSONObject("inventory-tracker"));
 					System.out.println("Successfully converted xml to obj. Implement serializing data to file");
 				} catch (ImportException e) {
 					// TODO Auto-generated catch block

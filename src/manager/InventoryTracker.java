@@ -2,6 +2,7 @@ package manager;
 
 import java.sql.Timestamp;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import gui.common.SizeUnits;
@@ -44,9 +45,9 @@ public class InventoryTracker extends Model {
 	public static boolean Test(){
 		InventoryTracker it = InventoryTracker.inst();
 		StorageUnit su = new StorageUnit("Hello");
-		Product p = new Product(new Barcode("1234"), "Prod1234", 3, 
-				new Size(3, SizeUnits.Count), 22, "inch");
-		Item i = new Item(new Barcode("1234"), p, su, new Timestamp(0));
+		Product p = new Product(new Barcode(1234), "Prod1234", 3, 
+				new Size(3, SizeUnits.Count), 22);
+		Item i = new Item(new Barcode(12345), p, su, new Timestamp(0));
 		StorageUnitManager sum = StorageUnitManager.inst();
 		sum.addStorageUnit(su);
 		su.addItem(i);
@@ -55,9 +56,16 @@ public class InventoryTracker extends Model {
 		return true;
 	}
 
-	public static InventoryTracker fromJSON(JSONObject json) throws ImportException {
+	public static InventoryTracker fromJSON(JSONObject json) throws ImportException, JSONException {
 		InventoryTracker it = inst();
+		System.out.println("\nDealing with json obj");
+		System.out.println(JSONObject.getNames(json).length);
+		if(!json.has("products") || !json.has("storage-units") || !json.has("item-history"))
+			throw new ImportException("<inventory-tracker> missing mandatory sub-field");
 		
+		ProductManager pm = ProductManager.fromJSON(json.getJSONObject("products").getJSONArray("product"));
+		
+		System.out.println("\n");
 		return it;
 	}
 }
