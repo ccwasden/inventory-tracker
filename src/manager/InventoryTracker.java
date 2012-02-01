@@ -68,4 +68,8 @@ public class InventoryTracker extends Model {
 		System.out.println("\n");
 		return it;
 	}
+	
+	public String toXML() {
+		return null;
+	}
 }
