@@ -85,4 +85,8 @@ public class Size extends Model {
 	public String toXML() {
 		return null;
 	}
+
+	public String toString() {
+		return "" + getSize() + " "  + getUnits();
+	}
 }

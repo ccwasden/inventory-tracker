@@ -123,6 +123,14 @@ public class Product extends Model implements Comparable<Product> {
 		return new TreeSet<Item>();
 	}
 
+	/**
+	* Gets an ItemList of Item's that are instances of this Product.
+	* @return The list of Items associated with this product.
+	*/
+	public Size getSize() {
+		return _size;
+	}
+
 	//////////////////////////MUTATORS////////////////////////////////
 
 	/**
@@ -252,7 +260,12 @@ public class Product extends Model implements Comparable<Product> {
 	// <product barcode="037000307570" description="Crest Extra Whitening Toothpaste"
 	//  creation-date="05/14/2011" size="6.2 ounces" supply="4" shelf-life="24" />
 	public String toXML() {
-		String xml = "";
+		String xml = "<product barcode=\"" + getBarcode() + "\" ";
+		xml += "description=\"" + getDescription() + "\" ";
+		xml += "creation-date=\"" + formatDateForXML(getCreationDate()) + "\" ";
+		xml += "size=\"" + getSize() + "\" ";
+		xml += "supply=\"" + getThreeMonthSupply() + "\" ";
+		xml += "shelf-life=\"" + getShelfLife() + "\" />";
 		return null;
 	}
 
