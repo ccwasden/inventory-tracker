@@ -131,11 +131,11 @@ public class Product extends Model implements Comparable {
 	* @param date A Timestamp with the creation date of this Item.
 	*/
 	private void setCreationDate(Timestamp date) throws InvalidDataException {
-		ProductManager productManager = ProductManager.inst();
+		/*ProductManager productManager = ProductManager.inst();
 		Timestamp earliestItemAddedDate = productManager.getEarliestItemAddedDate(this);
 		if (earliestItemAddedDate != date)
 			throw new InvalidDataException("Earliest item added date is " +
-					"not equal to product creation date");		
+					"not equal to product creation date");	*/	
 		_creationDate = date;
 	}
 

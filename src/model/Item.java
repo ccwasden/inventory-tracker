@@ -39,12 +39,12 @@ public class Item extends Model {
 			setProduct(product);
 			setStorageUnit(storageUnit);
 			setExpirationDate(expirationDate);
+		
+			Calendar calendar = Calendar.getInstance();
+			java.util.Date now = calendar.getTime();
+			setDateAdded(new Timestamp(now.getTime()));
 		} 
 		catch (InvalidDataException e) { }
-		
-		Calendar calendar = Calendar.getInstance();
-		java.util.Date now = calendar.getTime();
-		setDateAdded(new Timestamp(now.getTime()));
 	}
 
 
@@ -145,7 +145,16 @@ public class Item extends Model {
 	* either as a parameter passed in, or created as part of the Item's initialization.
 	* @param date The Timestamp for the Item's date added
 	*/
-	private void setDateAdded(Timestamp date) {
+	private void setDateAdded(Timestamp date) throws InvalidDataException {
+		if (date == null)
+			throw new InvalidDataException("Entry date cannot be null");
+		if (date.before(_product.getCreationDate()))
+			throw new InvalidDataException("Entry date must be after or exactly " +
+					"on the product creation date");
+		if (date.before(new Timestamp(946727755)))
+			throw new InvalidDataException("Date cannot be before 1/1/2000");
+		if (date.after(new Timestamp((new java.util.Date()).getTime())))
+			throw new InvalidDataException("Date cannot be after today's date");
 		_dateAdded = date;
 	}
 

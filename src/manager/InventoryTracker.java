@@ -58,14 +58,16 @@ public class InventoryTracker extends Model {
 
 	public static InventoryTracker fromJSON(JSONObject json) throws ImportException, JSONException {
 		InventoryTracker it = inst();
-		System.out.println("\nDealing with json obj");
-		System.out.println(JSONObject.getNames(json).length);
 		if(!json.has("products") || !json.has("storage-units") || !json.has("item-history"))
-			throw new ImportException("<inventory-tracker> missing mandatory sub-field");
+			throw new ImportException("<inventory-tracker> tag malformed");
 		
-		ProductManager pm = ProductManager.fromJSON(json.getJSONObject("products").getJSONArray("product"));
+		ProductManager pm = ProductManager.fromJSON(
+				json.getJSONObject("products").getJSONArray("product"));
+		StorageUnitManager sum = StorageUnitManager.fromJSON(
+				json.getJSONObject("storage-units").getJSONArray("storage-unit"));
+		ItemManager im = ItemManager.fromJSON(
+				json.getJSONObject("item-history").getJSONArray("item"));
 		
-		System.out.println("\n");
 		return it;
 	}
 	

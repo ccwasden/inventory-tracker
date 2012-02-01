@@ -2,6 +2,8 @@ package manager;
 
 import java.util.*; 
 
+import org.json.JSONArray;
+
 import model.Barcode;
 import model.Item;
 import model.ItemFilter;
@@ -113,4 +115,10 @@ public class StorageUnitManager extends Model {
     public String toXML() {
         return null;
     }
+
+	public static StorageUnitManager fromJSON(JSONArray jsonArray) {
+		// TODO Implement
+		System.out.println("Implement StoragUnitManager::fromJSON");
+		return null;
+	}
 }

@@ -2,6 +2,8 @@ package manager;
 
 import java.util.*; 
 
+import org.json.JSONArray;
+
 import model.Item;
 import model.Model;
 import model.StorageUnit;
@@ -87,4 +89,10 @@ public class ItemManager extends Model {
     public String toXML() {
         return null;
     }
+
+	public static ItemManager fromJSON(JSONArray jsonArray) {
+		// TODO Implement
+		System.out.println("Implement ItemManager::fromJSON");
+		return null;
+	}
 }
