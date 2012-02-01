@@ -19,7 +19,7 @@ import common.Result;
  * 
  */
 @SuppressWarnings("serial")
-public class Product extends Model implements Comparable {
+public class Product extends Model implements Comparable<Product> {
 	private Timestamp _creationDate;
 	private Barcode _barcode;
 	private String _description;
@@ -237,7 +237,7 @@ public class Product extends Model implements Comparable {
 		try {
 			DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 			Date create = (Date)formatter.parse(jsonObject.getString("creation-date"));
-			Product p = new Product(new Barcode(jsonObject.getInt("barcode")), 
+			Product p = new Product(new Barcode(jsonObject.getLong("barcode")), 
 					jsonObject.getString("description"),
 					(float) jsonObject.getDouble("shelf-life"), 
 					Size.fromString(jsonObject.getString("size")),
@@ -249,12 +249,12 @@ public class Product extends Model implements Comparable {
 		}
 	}
 
-	@Override
-	public int compareTo(Object arg0) {
-		return getBarcode().compareTo(((Product)arg0).getBarcode());
-	}
-
 	public String toXML() {
 		return null;
+	}
+
+	@Override
+	public int compareTo(Product o) {
+		return getBarcode().compareTo(o.getBarcode());
 	}
 }

@@ -3,6 +3,8 @@ package manager;
 import java.util.*; 
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import model.Barcode;
 import model.Item;
@@ -22,6 +24,7 @@ public class StorageUnitManager extends Model {
     private HashMap<StorageUnitProduct, ProductContainer> _productSUMap;
     private TreeSet<StorageUnit> _storageUnits;
     private static StorageUnitManager ref;
+    private HashMap<String, StorageUnit> _nameMap;
 
     /**
      * Get Singleton
@@ -49,6 +52,7 @@ public class StorageUnitManager extends Model {
     private StorageUnitManager(){
     	_productSUMap = new HashMap<StorageUnitProduct, ProductContainer>();
     	_storageUnits = new TreeSet<StorageUnit>();
+    	_nameMap = new HashMap<String, StorageUnit>(); 
     }
     
     /**
@@ -58,7 +62,9 @@ public class StorageUnitManager extends Model {
      *
      */
     public boolean addStorageUnit(StorageUnit unit){
-    	return _storageUnits.add(unit);
+    	boolean added = _storageUnits.add(unit);
+    	if(added) _nameMap.put(unit.getName(), unit);
+    	return added;
     }
     
     /**
@@ -116,9 +122,20 @@ public class StorageUnitManager extends Model {
         return null;
     }
 
-	public static StorageUnitManager fromJSON(JSONArray jsonArray) {
-		// TODO Implement
-		System.out.println("Implement StoragUnitManager::fromJSON");
+	public static StorageUnitManager fromJSON(JSONArray jsonArray) throws JSONException, ImportException {
+		StorageUnitManager sm = StorageUnitManager.inst();
+		for(int i = 0; i < jsonArray.length(); i++) {
+			JSONObject j = jsonArray.getJSONObject(i);
+			if(!j.has("name") || !j.has("products") || !j.has("items")
+				|| !j.has("product-groups")) 
+				throw new ImportException("<storage-unit> malformed");
+			StorageUnit su = new StorageUnit(j.getString("name"));
+			JSONArray jarr = j.getJSONObject("products").getJSONArray("product");
+			su.addAllProductsFromJSON(jarr);
+			jarr = j.getJSONObject("items").getJSONArray("item");
+			su.addAllItemsFromJSON(jarr);
+			sm.addStorageUnit(su);
+		}
 		return null;
 	}
 }

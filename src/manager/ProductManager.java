@@ -20,6 +20,7 @@ import model.ProductFilter;
 @SuppressWarnings("serial")
 public class ProductManager extends Model {
     private TreeSet<Product> _products;
+    private HashMap<Barcode, Product> _barcodeProductMap;
     private static ProductManager ref;
     
     /**
@@ -46,6 +47,7 @@ public class ProductManager extends Model {
      */
     private ProductManager(){
     	_products = new TreeSet<Product>();
+    	_barcodeProductMap = new HashMap<Barcode, Product>();
     }
     
     /**
@@ -55,7 +57,8 @@ public class ProductManager extends Model {
      *
      */
     public Product getProduct(Barcode barcode){
-    	return null;
+    	System.out.println("size of map: " + _barcodeProductMap.size());
+    	return _barcodeProductMap.get(barcode);
     }
     
     /**
@@ -93,13 +96,22 @@ public class ProductManager extends Model {
 	public static ProductManager fromJSON(JSONArray jsonArray) throws JSONException, ImportException {
 		ProductManager pm = inst();
 		for(int i = 0; i < jsonArray.length(); i++)
-			pm._products.add(Product.fromJSON(jsonArray.getJSONObject(i)));
-		
+			pm.addProduct(Product.fromJSON(jsonArray.getJSONObject(i)));
 //		jsonObject.getNames(jo)
 		return pm;
 	}
 
-    public String toXML() {
+    private void addProduct(Product p) {
+		_products.add(p);
+		System.out.println("adding product to pm: " + p.getBarcode().hashCode());
+		_barcodeProductMap.put(p.getBarcode(), p);
+	}
+
+	public String toXML() {
         return null;
     }
+
+	public int numberOfProducts() {
+		return _products.size();
+	}
 }

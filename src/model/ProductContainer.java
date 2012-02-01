@@ -3,13 +3,20 @@ package model;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import manager.ImportException;
+import manager.ProductManager;
+import manager.StorageUnitManager;
+
 /**
  * A ProductContainer is a generic term for StorageUnits and ProductGroups. 
  * These objects can "contain" Products and Items, and are referred to generically
  * as ProductContainers.
  */
 @SuppressWarnings("serial")
-public abstract class ProductContainer extends Model {
+public abstract class ProductContainer extends Model implements Comparable<ProductContainer> {
 	
 	private String _name;	
 	
@@ -105,6 +112,17 @@ public abstract class ProductContainer extends Model {
 	}		
 	
 	// Class Methods
+
+	/**
+	 * Adds a new product to this container, and is called when an item 
+	 * is trying to be added but has no product associated with it yet.
+	 * @param product The product to be added
+	 */
+	public void addProduct(Product product) {
+		StorageUnitManager.inst()
+			.putStorageUnitProductInContainer(getStorageUnit(), product, this);
+	}	
+	
 	/**
 	 * Adds a ProductGroup
 	 * @param productGroup The ProductGroup to be added
@@ -208,11 +226,42 @@ public abstract class ProductContainer extends Model {
 		return _name.hashCode();
 	}
 	
+	public void addAllProductsFromJSON(JSONArray jarr) throws JSONException, ImportException{
+		for(int k = 0; k < jarr.length(); k++){
+			long bcode = jarr.getJSONObject(k).getLong("barcode");
+			Barcode b = new Barcode(bcode);
+			System.out.println("Finish ProductContainer::addAllProductsFromJSON");
+//			Product p = ProductManager.inst().getProduct(b);
+//			if(p == null){
+//				System.out.println("barcode: " + b.hashCode());
+//				throw new ImportException("cant find product of specified barcode");
+//			}
+//			addProduct(p);
+		}
+	}
+	
+	public void addAllItemsFromJSON(JSONArray jarr) throws JSONException, ImportException {
+		for(int k = 0; k < jarr.length(); k++){
+			System.out.println("Implement adding item to product container");
+//			long bcode = jarr.getJSONObject(k).getLong("barcode");
+//			Barcode b = new Barcode(bcode);
+//			Product p = ProductManager.inst().getProduct(b);
+//			if(p == null) 
+//				throw new ImportException("cant find product of specified barcode");
+//			addProduct(p);
+		}
+	}
+	
 	/**
 	* Static method for unit testing purposes.
 	* @return true if success
 	*/
 	public static boolean Test() {
 		return true;
+	}
+	
+	@Override
+	public int compareTo(ProductContainer o) {
+		return getName().compareTo(o.getName());
 	}
 }

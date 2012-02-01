@@ -33,7 +33,8 @@ public class Item extends Model {
 	 * @param storageUnit
 	 * @param expirationDate
 	 */
-	public Item(Barcode barcode, Product product, StorageUnit storageUnit, Timestamp expirationDate) {
+	public Item(Barcode barcode, Product product, StorageUnit storageUnit, 
+			Timestamp expirationDate) {
 		try {
 			setBarcode(barcode);
 			setProduct(product);

@@ -9,10 +9,10 @@ public class Barcode extends Model implements Comparable {
 
 	/**
 	* Constructs a new Barcode object.
-	* @param code The value of the Barcode
+	* @param l The value of the Barcode
 	*/
-	public Barcode(int code) {
-		_code = code;
+	public Barcode(long l) {
+		setCode(l);
 	}
 
 	/**
@@ -27,7 +27,7 @@ public class Barcode extends Model implements Comparable {
 	* Sets the Barcode's code.
 	* @param code The new value for the Barcode.
 	*/
-	public void setCode(int code) {
+	public void setCode(long code) {
 		_code = code;
 	}
 	
@@ -41,7 +41,12 @@ public class Barcode extends Model implements Comparable {
 	
 	@Override
 	public int hashCode(){
-		return (int) _code;
+//		int i = (int)_code;
+//	    if ((long)i != _code) {
+//	        System.out.println("Invalid cast of code in Barcode::hashCode");
+//	    }
+		Long l = new Long(_code);
+		return l.hashCode();
 	}
 
 	@Override

@@ -2,13 +2,15 @@ package model;
 
 import java.util.TreeSet;
 
+import org.json.JSONArray;
+
 import manager.StorageUnitManager;
 
 /**
  * A StorageUnit is a room, closet, pantry, cupboard, or some other
  * enclosed area where items can be stored.
  */
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial" })
 public class StorageUnit extends ProductContainer {
 	
 	private TreeSet<Item> _items;
@@ -119,16 +121,7 @@ public class StorageUnit extends ProductContainer {
 	public boolean canRemoveItem(Item item) {
 		// I'm pretty sure you can always remove an item without checking anything
 		return true;
-	}	
-	
-	/**
-	 * Adds a new product to this StorageUnit, and is called when an item 
-	 * is trying to be added but has no product associated with it yet.
-	 * @param product The product to be added
-	 */
-	public void addProduct(Product product) {
-		getProducts().add(product);
-	}	
+	}
 	
 	/**
 	 * Transfers a collection of Items to a different ProductContainer
