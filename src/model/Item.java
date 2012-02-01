@@ -279,15 +279,21 @@ public class Item extends Model {
 
 
 	public static Item fromJSONToSU(JSONObject json, StorageUnit su) 
-			throws ImportException, ParseException, JSONException {
+			throws ImportException, JSONException {
 		if(!json.has("product") || !json.has("entry-date"))
 			throw new ImportException("<item> misformatted");
 		Barcode b = new Barcode(json.getLong("barcode"));
 		Product p = ProductManager.inst().getProduct(b);
 		if(p == null) throw new ImportException("cant find product of specified barcode");
-		Timestamp createdDate = getDateFromXML(json.getString("creation-date"));
-		Timestamp dateRemoved = json.has("exit-time") ? 
+		try {
+			Timestamp createdDate;
+			createdDate = getDateFromXML(json.getString("creation-date"));
+			Timestamp dateRemoved = json.has("exit-time") ? 
 				getDateTimeFromXML(json.getString("exit-time")) : null;
-		return new Item(null, p, su, null, createdDate, dateRemoved);
+			return new Item(null, p, su, null, createdDate, dateRemoved);
+		} catch (ParseException e) {
+			throw new ImportException("Invalid formatted date in item");
+		}
+		
 	}
 }

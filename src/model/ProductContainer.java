@@ -240,7 +240,7 @@ public abstract class ProductContainer extends Model implements Comparable<Produ
 		}
 	}
 	
-	public void addAllItemsFromJSON(JSONArray jarr) throws JSONException, ImportException, ParseException {
+	public void addAllItemsFromJSON(JSONArray jarr) throws JSONException, ImportException {
 		for(int k = 0; k < jarr.length(); k++){
 			System.out.println("Implement adding item to product container");
 			Item i = Item.fromJSONToSU(jarr.getJSONObject(k), getStorageUnit());
