@@ -8,11 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*; 
 
-import manager.ImportException;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import manager.ProductManager;
 import common.Result;
 
 /**
@@ -45,12 +41,12 @@ public class Product extends Model implements Comparable {
 			setShelfLife(shelfLife);
 			setSize(size);
 			setThreeMonthSupply(threeMonthSupply);
+		
+			Calendar calendar = Calendar.getInstance();
+			java.util.Date now = calendar.getTime();
+			setCreationDate(new Timestamp(now.getTime()));
 		}
 		catch (InvalidDataException e) { }
-		
-		Calendar calendar = Calendar.getInstance();
-		java.util.Date now = calendar.getTime();
-		setCreationDate(new Timestamp(now.getTime()));
 	}
 
 	public Product(Barcode barcode, String description, float shelfLife, Size size,
@@ -124,10 +120,15 @@ public class Product extends Model implements Comparable {
 
 	/**
 	* Sets the Product's creation date. This method should only be called upon
-	* intialization by the contructor.
+	* intialization by the constructor.
 	* @param date A Timestamp with the creation date of this Item.
 	*/
-	private void setCreationDate(Timestamp date) {
+	private void setCreationDate(Timestamp date) throws InvalidDataException {
+		ProductManager productManager = ProductManager.inst();
+		Timestamp earliestItemAddedDate = productManager.getEarliestItemAddedDate(this);
+		if (earliestItemAddedDate != date)
+			throw new InvalidDataException("Earliest item added date is " +
+					"not equal to product creation date");		
 		_creationDate = date;
 	}
 
