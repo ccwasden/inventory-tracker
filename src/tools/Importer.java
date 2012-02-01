@@ -33,28 +33,24 @@ public class Importer {
 	public static void importToSerialize(String path){
 		try {
 			String fileContents = readFile(path);
-//			String s = "<Smith><First_Name>Mary</First_Name><sex>Female</sex></Smith><Jackson><First_Name>Jackie</First_Name><sex>Female</sex></Jackson>";
 			JSONObject json;
-			try {
-				json = XML.toJSONObject(fileContents);
-				try {
-					
-					if(json.getJSONObject("inventory-tracker") == null) throw new ImportException("<inventory-tracker> tag not defined");
-					InventoryTracker it = InventoryTracker.fromJSON(json.getJSONObject("inventory-tracker"));
-					
-					FileOutputStream fos = new FileOutputStream("serializedModel.tmp");
-					ObjectOutputStream oos = new ObjectOutputStream(fos);
+			json = XML.toJSONObject(fileContents);
+			
+			if(json.getJSONObject("inventory-tracker") == null) throw new ImportException("<inventory-tracker> tag not defined");
+			InventoryTracker it = InventoryTracker.fromJSON(json.getJSONObject("inventory-tracker"));
+			
+			FileOutputStream fos = new FileOutputStream("serializedModel.tmp");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-					oos.writeObject(it);
-					oos.close();
-				} catch (ImportException e) {
-					// TODO Auto-generated catch block
-					System.out.println("Error - Malformed XML: " + e.getMessage());
-				}
-			} catch (JSONException e) {
-				System.out.println("Error parsing XML: " + e.getMessage());
-			}
-		} catch (IOException e) {
+			oos.writeObject(it);
+			oos.close();
+		} catch (ImportException e) {
+			System.out.println("Error - Malformed XML: " + e.getMessage());
+		}
+		catch (JSONException e) {
+			System.out.println("Error parsing XML: " + e.getMessage());
+		}
+		catch (IOException e) {
 			System.out.println("Error reading file: " + e.getMessage());
 		}
 	}
