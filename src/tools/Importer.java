@@ -41,7 +41,12 @@ public class Importer {
 					
 					if(json.getJSONObject("inventory-tracker") == null) throw new ImportException("<inventory-tracker> tag not defined");
 					InventoryTracker it = InventoryTracker.fromJSON(json.getJSONObject("inventory-tracker"));
-					System.out.println("Successfully converted xml to obj. Implement serializing data to file");
+					
+					FileOutputStream fos = new FileOutputStream("serializedModel.tmp");
+					ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+					oos.writeObject(it);
+					oos.close();
 				} catch (ImportException e) {
 					// TODO Auto-generated catch block
 					System.out.println("Error - Malformed XML: " + e.getMessage());

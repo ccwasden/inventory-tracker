@@ -38,3 +38,5 @@ Thumbs.db
 /.metadata
 
 runant
+
+build/serializedModel.tmp
