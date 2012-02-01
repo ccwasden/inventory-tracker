@@ -8,6 +8,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*; 
 
+import org.json.*;
+
+import manager.ImportException;
 import manager.ProductManager;
 import common.Result;
 
@@ -46,7 +49,9 @@ public class Product extends Model implements Comparable {
 			java.util.Date now = calendar.getTime();
 			setCreationDate(new Timestamp(now.getTime()));
 		}
-		catch (InvalidDataException e) { }
+		catch (InvalidDataException e) {
+			System.out.println("new product error: " + e.getMessage());
+		}
 	}
 
 	public Product(Barcode barcode, String description, float shelfLife, Size size,
@@ -59,7 +64,9 @@ public class Product extends Model implements Comparable {
 			setThreeMonthSupply(threeMonthSupply);
 			setCreationDate(creationDate);
 		}
-		catch (InvalidDataException e) { }
+		catch (InvalidDataException e) { 
+			System.out.println("new product error: " + e.getMessage());
+		}
 		
 	}
 
@@ -113,7 +120,7 @@ public class Product extends Model implements Comparable {
 	* @return The list of Items associated with this product.
 	*/
 	public TreeSet<Item> getItems() {
-		return null;
+		return new TreeSet<Item>();
 	}
 
 	//////////////////////////MUTATORS////////////////////////////////
@@ -157,7 +164,7 @@ public class Product extends Model implements Comparable {
 	* @param shelfLife The Product's shelf life in months.
 	*/
 	public void setShelfLife(float shelfLife) throws InvalidDataException {
-		if (shelfLife <= 0)
+		if (shelfLife < 0)
 			throw new InvalidDataException("Shelf life must be non-negative");
 		_shelfLife = shelfLife;
 	}
@@ -167,7 +174,7 @@ public class Product extends Model implements Comparable {
 	* @param threeMonthSupply The Product's ThreeMonthSupply
 	*/
 	public void setThreeMonthSupply(int threeMonthSupply) throws InvalidDataException {
-		if (threeMonthSupply <= 0)
+		if (threeMonthSupply < 0)
 			throw new InvalidDataException("Three month supply must be non-negative");
 		_threeMonthSupply = threeMonthSupply;
 	}
@@ -178,7 +185,7 @@ public class Product extends Model implements Comparable {
 	 */
 	public void setSize(Size s) throws InvalidDataException {
 		if (s.getSize() <= 0)
-			throw new InvalidDataException("Size must be non-negative");
+			throw new InvalidDataException("Size must be greater than 0");
 		if (s.getUnits() == SizeUnits.Count && s.getSize() % 1 != 0)
 			throw new InvalidDataException("Count value must only be an integer");
 		_size = s;

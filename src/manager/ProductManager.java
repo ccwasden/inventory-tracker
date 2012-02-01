@@ -54,7 +54,9 @@ public class ProductManager extends Model {
      * @return Product The product of the barcode
      *
      */
-    public Product getProduct(Barcode barcode){return null;}
+    public Product getProduct(Barcode barcode){
+    	return null;
+    }
     
     /**
      * Retrieves the storage unit of the associated name
@@ -71,8 +73,8 @@ public class ProductManager extends Model {
     public ArrayList<Product> getProductsOfFilter(ProductFilter filter){return null;}
     
     public Timestamp getEarliestItemAddedDate(Product p) {
-		Product product = getProduct(p.getBarcode());
-		TreeSet<Item> items = product.getItems();
+//		Product product = getProduct(p.getBarcode());
+		TreeSet<Item> items = p.getItems();
 		Timestamp earliestEntryDate = new Timestamp(0);
 		for (Item item : items)
 			if (item.getDateAdded().before(earliestEntryDate))
