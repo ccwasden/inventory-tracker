@@ -33,21 +33,27 @@ public abstract class ProductContainer extends Model {
 	 * Constructs a new instance of a ProductContainer
 	 */
 	public ProductContainer(String name, StorageUnit su) {
-		setName(name);
-		setProductGroups(new TreeSet<ProductGroup>());
-		setProducts(new TreeSet<Product>());
-		_storageUnit = su;
+		try {
+			setName(name);
+			setProductGroups(new TreeSet<ProductGroup>());
+			setProducts(new TreeSet<Product>());
+			_storageUnit = su;
+		}
+		catch (InvalidDataException e) { }
 	}
 	
 	/**
 	 * Constructs a new instance of a ProductContainer (only for StorageUnit)
 	 */
 	public ProductContainer(String name) {
-		assert this instanceof StorageUnit;
-		setName(name);
-		setProductGroups(new TreeSet<ProductGroup>());
-		setProducts(new TreeSet<Product>());
-		_storageUnit = (StorageUnit) this;
+		try {
+			assert this instanceof StorageUnit;
+			setName(name);
+			setProductGroups(new TreeSet<ProductGroup>());
+			setProducts(new TreeSet<Product>());
+			_storageUnit = (StorageUnit) this;
+		}
+		catch (InvalidDataException e) { }
 	}
 	
 	
@@ -77,7 +83,10 @@ public abstract class ProductContainer extends Model {
 	/**
 	 * Sets the name of this ProductContainer
 	 */
-	public void setName(String name) {
+	public void setName(String name) throws InvalidDataException {
+		if (name == null || name == "")
+			throw new InvalidDataException("Name must not be empty or null");
+		// To do: also check that this is unique among other ProductContainers at same level
 		_name = name;
 	}	
 	
@@ -100,9 +109,10 @@ public abstract class ProductContainer extends Model {
 	 * Adds a ProductGroup
 	 * @param productGroup The ProductGroup to be added
 	 */
-	public void addProductGroup(ProductGroup productGroup) {
-		if (canAddProductGroup(productGroup))
-			_productGroups.add(productGroup);
+	public void addProductGroup(ProductGroup productGroup) throws InvalidDataException {
+		if (!canAddProductGroup(productGroup))
+			throw new InvalidDataException("Cannot add this product group");
+		_productGroups.add(productGroup);
 	}	
 	
 	/**

@@ -1,5 +1,7 @@
 package model;
 
+import gui.common.SizeUnits;
+
 import java.sql.Timestamp;
 import java.util.*; 
 import common.Result;
@@ -28,12 +30,14 @@ public class Product extends Model {
 	 */
 	public Product(Barcode barcode, String description, float shelfLife, Size size,
 								int threeMonthSupply, String unitOfMeasurement) {
-		setBarcode(barcode);
-		setDescription(description);
-		setShelfLife(shelfLife);
-		setSize(size);
-		setThreeMonthSupply(threeMonthSupply);
-		setUnitOfMeasurement(unitOfMeasurement);
+		try {
+			setBarcode(barcode);
+			setDescription(description);
+			setShelfLife(shelfLife);
+			setSize(size);
+			setThreeMonthSupply(threeMonthSupply);
+		}
+		catch (InvalidDataException e) { }
 		
 		Calendar calendar = Calendar.getInstance();
 		java.util.Date now = calendar.getTime();
@@ -42,13 +46,16 @@ public class Product extends Model {
 
 	public Product(Barcode barcode, String description, float shelfLife, Size size,
 						int threeMonthSupply, String unitOfMeasurement, Timestamp creationDate) {
-		setBarcode(barcode);
-		setDescription(description);
-		setShelfLife(shelfLife);
-		setSize(size);
-		setThreeMonthSupply(threeMonthSupply);
-		setUnitOfMeasurement(unitOfMeasurement);
-		setCreationDate(creationDate);
+		try {
+			setBarcode(barcode);
+			setDescription(description);
+			setShelfLife(shelfLife);
+			setSize(size);
+			setThreeMonthSupply(threeMonthSupply);
+			setCreationDate(creationDate);
+		}
+		catch (InvalidDataException e) { }
+		
 	}
 
 	//////////////////////ACCESSORS/////////////////////////////
@@ -126,7 +133,9 @@ public class Product extends Model {
 	* Sets the Barcode for the Product.
 	* @param barcode The Product's Barcode.
 	*/
-	public void setBarcode(Barcode barcode) {
+	public void setBarcode(Barcode barcode) throws InvalidDataException {
+		if (barcode == null || barcode.toString() == "")
+			throw new InvalidDataException("Barcode must be non-empty");
 		_barcode = barcode;
 	}
 
@@ -134,7 +143,9 @@ public class Product extends Model {
 	* Sets the Product's description.
 	* @param description The Product's description.
 	*/
-	public void setDescription(String description) {
+	public void setDescription(String description) throws InvalidDataException {
+		if (description == null || description == "")
+			throw new InvalidDataException("Description must be non-empty");
 		_description = description;
 	}
 
@@ -142,7 +153,9 @@ public class Product extends Model {
 	* Sets the Product's shelf life.
 	* @param shelfLife The Product's shelf life in months.
 	*/
-	public void setShelfLife(float shelfLife) {
+	public void setShelfLife(float shelfLife) throws InvalidDataException {
+		if (shelfLife <= 0)
+			throw new InvalidDataException("Shelf life must be non-negative");
 		_shelfLife = shelfLife;
 	}
 
@@ -150,23 +163,21 @@ public class Product extends Model {
 	* Sets the Product's three month supply.
 	* @param threeMonthSupply The Product's ThreeMonthSupply
 	*/
-	public void setThreeMonthSupply(int threeMonthSupply) {
+	public void setThreeMonthSupply(int threeMonthSupply) throws InvalidDataException {
+		if (threeMonthSupply <= 0)
+			throw new InvalidDataException("Three month supply must be non-negative");
 		_threeMonthSupply = threeMonthSupply;
 	}
-	
-	/**
-	* Sets the Product's unit of measure.
-	* @param unitOfMeasure The Product's unitOfMeasure
-	*/
-	public void setUnitOfMeasurement(String unitOfMeasure) {
-		_unitOfMeasurement = unitOfMeasure;
-	}
-	
+		
 	/**
 	 * Sets the size
 	 * @param s the size to set
 	 */
-	public void setSize(Size s){
+	public void setSize(Size s) throws InvalidDataException {
+		if (s.getSize() <= 0)
+			throw new InvalidDataException("Size must be non-negative");
+		if (s.getUnits() == SizeUnits.Count && s.getSize() % 1 != 0)
+			throw new InvalidDataException("Count value must only be an integer");
 		_size = s;
 	}
 

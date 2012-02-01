@@ -89,8 +89,11 @@ public class StorageUnit extends ProductContainer {
 	 * @param name The new name to be associated with this StorageUnit
 	 */
 	public void editStorageUnit(String name, TreeSet<Item> items) {
-		setName(name);
-		setItems(items);
+		try {
+			setName(name);
+			setItems(items);
+		}
+		catch (InvalidDataException e) { }
 	}	
 	
 	/**

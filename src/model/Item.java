@@ -34,10 +34,13 @@ public class Item extends Model {
 	 * @param expirationDate
 	 */
 	public Item(Barcode barcode, Product product, StorageUnit storageUnit, Timestamp expirationDate) {
-		setBarcode(barcode);
-		setProduct(product);
-		setStorageUnit(storageUnit);
-		setExpirationDate(expirationDate);
+		try {
+			setBarcode(barcode);
+			setProduct(product);
+			setStorageUnit(storageUnit);
+			setExpirationDate(expirationDate);
+		} 
+		catch (InvalidDataException e) { }
 		
 		Calendar calendar = Calendar.getInstance();
 		java.util.Date now = calendar.getTime();
@@ -56,12 +59,15 @@ public class Item extends Model {
 	 */
 	public Item(Barcode barcode, Product product, StorageUnit storageUnit, Timestamp expirationDate,
 								Timestamp dateAdded, Timestamp dateRemoved ) {
-		setBarcode(barcode);
-		setProduct(product);
-		setStorageUnit(storageUnit);
-		setExpirationDate(expirationDate);
-		setDateAdded(dateAdded);
-		setDateRemoved(dateRemoved);
+		try {
+			setBarcode(barcode);
+			setProduct(product);
+			setStorageUnit(storageUnit);
+			setExpirationDate(expirationDate);
+			setDateAdded(dateAdded);
+			setDateRemoved(dateRemoved);
+		}
+		catch (InvalidDataException e) { }
 	}
 
 	//////////////////////ACCESSORS/////////////////////////////
@@ -128,7 +134,9 @@ public class Item extends Model {
 	* Updates the Item's expiration date.
 	* @param date The Timestamp for the Item's updated expiration date.
 	*/
-	public void setExpirationDate(Timestamp date) {
+	public void setExpirationDate(Timestamp date) throws InvalidDataException {
+		if (getProduct().getShelfLife() == 0 && date != null)
+			throw new InvalidDataException("Cannot set expiration date when shelf life isn't specified");
 		_expirationDate = date;
 	}
 
@@ -154,7 +162,7 @@ public class Item extends Model {
 	 * Set the storage unit
 	 * @param su The storage Unit
 	 */
-	public void setStorageUnit(StorageUnit su){
+	public void setStorageUnit(StorageUnit su) {
 		ItemManager.inst().putItemInStorageUnit(this, su);
 	}
 	
@@ -162,7 +170,9 @@ public class Item extends Model {
 	 * Set the product
 	 * @param p The Product
 	 */
-	private void setProduct(Product p){
+	private void setProduct(Product p) throws InvalidDataException {
+		if (p == null)
+			throw new InvalidDataException("Product must be non-empty");
 		_product = p;
 	}
 
