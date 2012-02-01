@@ -248,14 +248,12 @@ public class Product extends Model implements Comparable<Product> {
 				|| !jsonObject.has("supply") || !jsonObject.has("shelf-life")) 
 			throw new ImportException("<product> misformatted");
 		try {
-			DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-			Date create = (Date)formatter.parse(jsonObject.getString("creation-date"));
 			Product p = new Product(new Barcode(jsonObject.getLong("barcode")), 
 					jsonObject.getString("description"),
 					(float) jsonObject.getDouble("shelf-life"), 
 					Size.fromString(jsonObject.getString("size")),
 					jsonObject.getInt("supply"),
-					new Timestamp(create.getTime()));
+					getDateFromXML(jsonObject.getString("creation-date")));
 			return p;
 		} catch (ParseException e) {
 			throw new ImportException("malformatted date");

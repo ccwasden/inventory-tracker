@@ -1,9 +1,18 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*; 
 
 import java.sql.Timestamp;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import manager.ImportException;
 import manager.ItemManager;
+import manager.ProductManager;
 import manager.StorageUnitManager;
 import common.Result;
 
@@ -47,7 +56,6 @@ public class Item extends Model {
 		} 
 		catch (InvalidDataException e) { }
 	}
-
 
 	/**
 	 * Constructor used when loading Items from database.
@@ -137,7 +145,8 @@ public class Item extends Model {
 	*/
 	public void setExpirationDate(Timestamp date) throws InvalidDataException {
 		if (getProduct().getShelfLife() == 0 && date != null)
-			throw new InvalidDataException("Cannot set expiration date when shelf life isn't specified");
+			throw new InvalidDataException("Cannot set expiration " +
+					"date when shelf life isn't specified");
 		_expirationDate = date;
 	}
 
@@ -254,14 +263,31 @@ public class Item extends Model {
 	}
 
 	// <item product="049000037197" entry-date="06/04/2011" />
-	// -or- <item product="041710112881" entry-date="05/14/2011" exit-time="05/21/2011 12:01 PM" />
+	// -or- <item product="041710112881" entry-date="05/14/2011" 
+	//				exit-time="05/21/2011 12:01 PM" />
 	public String toXML() {
 		String xml = "<item product=\"";
-		xml += getProduct().getBarcode() + "\" entry-date=\"" + formatDateForXML(getDateAdded()) + "\" ";
+		xml += getProduct().getBarcode() + "\" entry-date=\"" + 
+			formatDateForXML(getDateAdded()) + "\" ";
 		if (isRemoved()) {
-			xml += "exit-time=\"" + formatDateForXML(getDateRemoved()) + "\" ";
+			xml += "exit-time=\"" + 
+				formatDateForXML(getDateRemoved()) + "\" ";
 		}
 		xml += "/>";
 		return xml;
+	}
+
+
+	public static Item fromJSONToSU(JSONObject json, StorageUnit su) 
+			throws ImportException, ParseException, JSONException {
+		if(!json.has("product") || !json.has("entry-date"))
+			throw new ImportException("<item> misformatted");
+		Barcode b = new Barcode(json.getLong("barcode"));
+		Product p = ProductManager.inst().getProduct(b);
+		if(p == null) throw new ImportException("cant find product of specified barcode");
+		Timestamp createdDate = getDateFromXML(json.getString("creation-date"));
+		Timestamp dateRemoved = json.has("exit-time") ? 
+				getDateTimeFromXML(json.getString("exit-time")) : null;
+		return new Item(null, p, su, null, createdDate, dateRemoved);
 	}
 }

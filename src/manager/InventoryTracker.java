@@ -21,7 +21,7 @@ public class InventoryTracker extends Model {
 	}
 	
 	public static void inst(InventoryTracker it){
-		ref = it;
+		if(ref != null) ref = it;
 	}
 	
 	private InventoryTracker() {

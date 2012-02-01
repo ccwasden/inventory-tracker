@@ -41,7 +41,7 @@ public class ItemManager extends Model {
      * @return the instance
      */
     public static ItemManager inst(ItemManager im){
-    	ref = im;
+    	if(ref != null) ref = im;
     	return ref;
     }
     

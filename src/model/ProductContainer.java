@@ -1,5 +1,6 @@
 package model;
 
+import java.text.ParseException;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -239,15 +240,11 @@ public abstract class ProductContainer extends Model implements Comparable<Produ
 		}
 	}
 	
-	public void addAllItemsFromJSON(JSONArray jarr) throws JSONException, ImportException {
+	public void addAllItemsFromJSON(JSONArray jarr) throws JSONException, ImportException, ParseException {
 		for(int k = 0; k < jarr.length(); k++){
 			System.out.println("Implement adding item to product container");
-//			long bcode = jarr.getJSONObject(k).getLong("barcode");
-//			Barcode b = new Barcode(bcode);
-//			Product p = ProductManager.inst().getProduct(b);
-//			if(p == null) 
-//				throw new ImportException("cant find product of specified barcode");
-//			addProduct(p);
+			Item i = Item.fromJSONToSU(jarr.getJSONObject(k), getStorageUnit());
+			getStorageUnit().addItem(i);
 		}
 	}
 	
