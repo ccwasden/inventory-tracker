@@ -119,6 +119,11 @@ public class StorageUnitManager extends Model {
 	}
 
     public String toXML() {
+        String xml = "<storage-units>\n";
+        for(StorageUnit su : getAllStorageUnits()) {
+            xml += su.toXML();
+        }
+        xml += "<storage-units>\n";
         return null;
     }
 

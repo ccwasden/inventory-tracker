@@ -161,6 +161,16 @@ public class StorageUnit extends ProductContainer {
 	}
 
 	public String toXML() {
-		return null;
+		String xml = "<storage-unit name=\"" + getName() + "\">\n";
+		// TODO products just with barcode
+		// TODO items not in product group
+		xml += "\t<items>\n";
+		for (Item item : getItems()) {
+			xml += "\t\t" + item.toXML();
+		}
+		xml += "\t</items>\n";
+		// TODO recursive product groups
+		xml += "</storage-unit>\n";
+		return xml;
 	}
 }

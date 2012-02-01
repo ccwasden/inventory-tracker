@@ -60,7 +60,49 @@ public class ProductGroup extends ProductContainer {
 		return true;
 	}
 
+// <product-groups>
+// 			<product-group name="Colgate" supply="0 count">			
+// 				<products>
+// 					<product barcode="035000741264" />
+// 				</products>
+// 				<items>
+// 					<item product="035000741264" entry-date="05/28/2011" />
+// 					<item product="035000741264" entry-date="05/28/2011" />
+// 				</items>
+// 			</product-group>
+// 			<product-group name="Crest" supply="0 count">			
+// 				<products>
+// 					<product barcode="037000307570" />
+// 				</products>
+// 				<items>
+// 					<item product="037000307570" entry-date="06/04/2011" />
+// 					<item product="037000307570" entry-date="06/04/2011" />
+// 					<item product="037000307570" entry-date="06/04/2011" />
+// 				</items>
+// 			</product-group>
+// 		</product-groups>	
 	public String toXML() {
-		return null;
+		String xml = "<product-group name=\"" + getName() + "\" supply=\"" + getThreeMonthSupply() + "\">\n";
+		
+		// TODO child product groups
+
+		// Print products
+		xml += "\t<products>\n";
+		for (Product prod : getProducts()) {
+			xml += "\t\t" + prod.toXML();
+		}
+		xml += "\t</products>\n";
+
+		// print items
+		xml += "\t<items>\n";
+		for (Product prod : getProducts()) {
+			for (Item item : prod.getItems()) {
+				xml += "\t\t" + item.toXML();
+			}
+		}
+		xml += "\t</items>\n";
+		
+		xml += "</product-group>";
+		return xml;
 	}
 }

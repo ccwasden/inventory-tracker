@@ -108,6 +108,11 @@ public class ProductManager extends Model {
 	}
 
 	public String toXML() {
+        String xml = "</products>\n";
+        for (Product prod : getAllProducts()) {
+            xml += "\t" + prod.toXML();
+        }
+        xml += "</products>\n";
         return null;
     }
 
