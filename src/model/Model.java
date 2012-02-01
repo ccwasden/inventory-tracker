@@ -26,11 +26,9 @@ public abstract class Model implements Serializable {
 	* @return A block of indented xml.
 	*/
 	protected String indentXMLBlock(String xml) {
-		// TODO probably shouldn't replace the last \n
 		String ret = "\t" + xml.replaceAll("\n", "\n\t");
-		while(ret.endsWith("\t")) {
-			ret = ret.substring(0, ret.length() - 1);
-		}
+		// remove any trailing tabs
+		while(ret.endsWith("\t")) ret = ret.substring(0, ret.length() - 1);
 		return ret;
 	}
 }
