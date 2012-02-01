@@ -73,18 +73,17 @@ public class InventoryTracker extends Model {
 	}
 	
 	public String toXML() {
-		// to fix indentation in formatting we can insert \t at start and replace \n's with \n\t's
-		// maybe put in an indent(String str) function
 		String xml = "<inventory-tracker>";
-		xml += getProductManager().toXML();
-		xml += getStorageUnitManager().toXML();
+		xml += indentXMLBlock(getProductManager().toXML());
+		xml += indentXMLBlock(getStorageUnitManager().toXML());
 
 		// print <item-history>
-		xml += "\t<item-history>\n";
+		String itemxml = "<item-history>\n";
 		for (Item item : getItemManager().getDeletedItems()) {
-			xml += "\t\t" + item.toXML();
+			itemxml +=  indentXMLBlock(item.toXML());
 		}
-		xml += "\t</item-history>\n";
+		itemxml += "\t</item-history>\n";
+		xml += indentXMLBlock(itemxml);
 
 		xml += "</inventory-tracker>";
 		return xml;
