@@ -57,7 +57,8 @@ public class ProductManager extends Model {
      *
      */
     public Product getProduct(Barcode barcode){
-    	System.out.println("size of map: " + _barcodeProductMap.size());
+//    	System.out.println("size of map: " + _barcodeProductMap.size());
+//    	System.out.println(_barcodeProductMap.keySet().toString());
     	return _barcodeProductMap.get(barcode);
     }
     

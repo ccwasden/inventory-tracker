@@ -229,6 +229,11 @@ public class Product extends Model implements Comparable<Product> {
 		return _barcode.hashCode();
 	}
 	
+	public boolean equals(Object o){
+		if(o instanceof Product) return hashCode() == o.hashCode();
+		else return false;
+	}
+	
 	/**
 	* Static method for unit testing purposes.
 	* @return true if success

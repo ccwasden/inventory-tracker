@@ -5,7 +5,7 @@ package model;
 */
 @SuppressWarnings({ "serial", "rawtypes" })
 public class Barcode extends Model implements Comparable {
-	private long _code;
+	private Long _code;
 
 	/**
 	* Constructs a new Barcode object.
@@ -45,8 +45,13 @@ public class Barcode extends Model implements Comparable {
 //	    if ((long)i != _code) {
 //	        System.out.println("Invalid cast of code in Barcode::hashCode");
 //	    }
-		Long l = new Long(_code);
-		return l.hashCode();
+//		Long l = new Long(_code);
+		return _code.hashCode();
+	}
+	
+	public boolean equals(Object o){
+		if(o instanceof Barcode) return hashCode() == o.hashCode();
+		else return false;
 	}
 
 	@Override

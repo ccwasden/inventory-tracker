@@ -230,7 +230,6 @@ public abstract class ProductContainer extends Model implements Comparable<Produ
 		for(int k = 0; k < jarr.length(); k++){
 			long bcode = jarr.getJSONObject(k).getLong("barcode");
 			Barcode b = new Barcode(bcode);
-			System.out.println("Finish ProductContainer::addAllProductsFromJSON");
 			Product p = ProductManager.inst().getProduct(b);
 			if(p == null){
 				System.out.println("barcode: " + b.hashCode());
