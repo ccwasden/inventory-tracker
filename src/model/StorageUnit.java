@@ -166,4 +166,8 @@ public class StorageUnit extends ProductContainer {
 	public static boolean Test(){
 		return true;
 	}
+
+	public String toXML() {
+		return null;
+	}
 }

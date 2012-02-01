@@ -59,4 +59,8 @@ public class ProductGroup extends ProductContainer {
 	public static boolean Test(){
 		return true;
 	}
+
+	public String toXML() {
+		return null;
+	}
 }

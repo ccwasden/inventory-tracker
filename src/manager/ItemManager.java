@@ -83,4 +83,8 @@ public class ItemManager extends Model {
 	public static boolean Test(){
 		return true;
 	}
+
+    public String toXML() {
+        return null;
+    }
 }

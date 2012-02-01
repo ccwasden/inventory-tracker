@@ -51,4 +51,8 @@ public class Barcode extends Model implements Comparable {
 		if(getCode() < otherCode) return -1;
 		return 0;
 	}
+
+	public String toXML() {
+		return null;
+	}
 }

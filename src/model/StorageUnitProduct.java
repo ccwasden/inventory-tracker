@@ -35,4 +35,8 @@ public class StorageUnitProduct extends Model {
 		
 		return true;
 	}
+
+	public String toXML() {
+		return null;
+	}
 }

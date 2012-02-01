@@ -81,4 +81,8 @@ public class Size extends Model {
 		if(type.equals("quarts")) return SizeUnits.Quarts;
 		throw new ImportException("invalid size type: " + type);
 	}
+
+	public String toXML() {
+		return null;
+	}
 }

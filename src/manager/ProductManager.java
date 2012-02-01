@@ -99,5 +99,8 @@ public class ProductManager extends Model {
 //		jsonObject.getNames(jo)
 		return pm;
 	}
-    
+
+    public String toXML() {
+        return null;
+    }
 }

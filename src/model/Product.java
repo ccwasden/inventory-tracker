@@ -253,4 +253,8 @@ public class Product extends Model implements Comparable {
 	public int compareTo(Object arg0) {
 		return getBarcode().compareTo(((Product)arg0).getBarcode());
 	}
+
+	public String toXML() {
+		return null;
+	}
 }
