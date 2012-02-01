@@ -85,6 +85,9 @@ public class ProductGroup extends ProductContainer {
 		String xml = "<product-group name=\"" + getName() + "\" supply=\"" + getThreeMonthSupply() + "\">\n";
 		
 		// TODO child product groups
+		for(ProductGroup pg : getProductGroups()) {
+			xml += indentXMLBlock(pg.toXML());
+		}
 
 		// Print products
 		xml += "\t<products>\n";
