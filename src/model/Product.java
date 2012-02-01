@@ -38,7 +38,7 @@ public class Product extends Model implements Comparable {
 	 * @param barcode
 	 */
 	public Product(Barcode barcode, String description, float shelfLife, Size size,
-								int threeMonthSupply, String unitOfMeasurement) {
+								int threeMonthSupply) {
 		try {
 			setBarcode(barcode);
 			setDescription(description);
@@ -47,12 +47,6 @@ public class Product extends Model implements Comparable {
 			setThreeMonthSupply(threeMonthSupply);
 		}
 		catch (InvalidDataException e) { }
-								int threeMonthSupply) {
-		setBarcode(barcode);
-		setDescription(description);
-		setShelfLife(shelfLife);
-		setSize(size);
-		setThreeMonthSupply(threeMonthSupply);
 		
 		Calendar calendar = Calendar.getInstance();
 		java.util.Date now = calendar.getTime();
@@ -60,7 +54,7 @@ public class Product extends Model implements Comparable {
 	}
 
 	public Product(Barcode barcode, String description, float shelfLife, Size size,
-						int threeMonthSupply, String unitOfMeasurement, Timestamp creationDate) {
+						int threeMonthSupply, Timestamp creationDate) {
 		try {
 			setBarcode(barcode);
 			setDescription(description);
@@ -71,13 +65,6 @@ public class Product extends Model implements Comparable {
 		}
 		catch (InvalidDataException e) { }
 		
-						int threeMonthSupply, Timestamp creationDate) {
-		setBarcode(barcode);
-		setDescription(description);
-		setShelfLife(shelfLife);
-		setSize(size);
-		setThreeMonthSupply(threeMonthSupply);
-		setCreationDate(creationDate);
 	}
 
 	//////////////////////ACCESSORS/////////////////////////////
