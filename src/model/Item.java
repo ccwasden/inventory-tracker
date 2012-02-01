@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.Timestamp;
 import java.util.*; 
 
 import manager.ItemManager;
@@ -253,7 +252,15 @@ public class Item extends Model {
 		return true;
 	}
 
+	// <item product="049000037197" entry-date="06/04/2011" />
+	// -or- <item product="041710112881" entry-date="05/14/2011" exit-time="05/21/2011 12:01 PM" />
 	public String toXML() {
-		return null;
+		String xml = "";
+		xml += "<item product=\"" + getProduct().getBarcode() + "\" entry-date=\"" + formatDateForXML(getDateAdded()) + "\" ";
+		if (isRemoved()) {
+			xml += "exit-time=\"" + formatDateForXML(getDateRemoved()) + "\" ";
+		}
+		xml += "/>";
+		return xml;
 	}
 }
