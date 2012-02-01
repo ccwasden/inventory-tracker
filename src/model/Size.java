@@ -65,21 +65,7 @@ public class Size extends Model {
 		String[] strs = string.split("\\s+");
 		if(strs.length < 2) throw new ImportException("Invalid size: " + string);
 		String type = string.substring(strs[0].length()).trim();
-		return new Size(new Float(strs[0]), unitsFromString(type));
-	}
-
-	private static SizeUnits unitsFromString(String type) throws ImportException {
-		if(type.equals("fluid ounces")) return SizeUnits.FluidOunces;
-		if(type.equals("ounces")) return SizeUnits.Ounces;
-		if(type.equals("count")) return SizeUnits.Count;
-		if(type.equals("gallons")) return SizeUnits.Gallons;
-		if(type.equals("grams")) return SizeUnits.Grams;
-		if(type.equals("kilograms")) return SizeUnits.Kilograms;
-		if(type.equals("liters")) return SizeUnits.Liters;
-		if(type.equals("pints")) return SizeUnits.Pints;
-		if(type.equals("pounds")) return SizeUnits.Pounds;
-		if(type.equals("quarts")) return SizeUnits.Quarts;
-		throw new ImportException("invalid size type: " + type);
+		return new Size(new Float(strs[0]), SizeUnits.valueOf(type));
 	}
 
 	public String toXML() {

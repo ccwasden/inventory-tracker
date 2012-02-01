@@ -25,16 +25,6 @@ public class Test {
 		StorageUnitManager.Test();
 		InventoryTracker.Test();
 		
-		
-		try {
-			String s = "<Smith><First_Name>Mary</First_Name><sex>Female</sex></Smith><Jackson><First_Name>Jackie</First_Name><sex>Female</sex></Jackson>";
-			JSONObject json = XML.toJSONObject(s);
-			System.out.println(json.get("Smith"));
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		System.out.println("All tests passed.");
 	}
 

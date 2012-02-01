@@ -127,7 +127,8 @@ public class StorageUnitManager extends Model {
         return null;
     }
 
-	public static StorageUnitManager fromJSON(JSONArray jsonArray) throws JSONException, ImportException {
+	public static StorageUnitManager fromJSON(JSONArray jsonArray) 
+			throws JSONException, ImportException {
 		StorageUnitManager sm = StorageUnitManager.inst();
 		for(int i = 0; i < jsonArray.length(); i++) {
 			JSONObject j = jsonArray.getJSONObject(i);

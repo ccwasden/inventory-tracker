@@ -94,7 +94,8 @@ public class ProductManager extends Model {
 		return true;
 	}
 
-	public static ProductManager fromJSON(JSONArray jsonArray) throws JSONException, ImportException {
+	public static ProductManager fromJSON(JSONArray jsonArray) 
+			throws JSONException, ImportException {
 		ProductManager pm = inst();
 		for(int i = 0; i < jsonArray.length(); i++)
 			pm.addProduct(Product.fromJSON(jsonArray.getJSONObject(i)));
