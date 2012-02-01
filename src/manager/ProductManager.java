@@ -1,8 +1,10 @@
 package manager;
 
+import java.sql.Timestamp;
 import java.util.*; 
 
 import model.Barcode;
+import model.Item;
 import model.Model;
 import model.Product;
 import model.ProductFilter;
@@ -64,6 +66,16 @@ public class ProductManager extends Model {
      */    
     public ArrayList<Product> getProductsOfFilter(ProductFilter filter){return null;}
     
+    public Timestamp getEarliestItemAddedDate(Product p) {
+		Product product = getProduct(p.getBarcode());
+		TreeSet<Item> items = product.getItems();
+		Timestamp earliestEntryDate = new Timestamp(0);
+		for (Item item : items)
+			if (item.getDateAdded().before(earliestEntryDate))
+				earliestEntryDate = item.getDateAdded();
+		return earliestEntryDate;
+    }
+        
     /**
 	* Static method for unit testing purposes.
 	* @return true if success

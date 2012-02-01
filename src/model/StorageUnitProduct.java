@@ -31,7 +31,7 @@ public class StorageUnitProduct extends Model {
 	* @return true if success
 	*/
 	public static boolean Test(){
-		StorageUnit su = new StorageUnit();
+		StorageUnit su = new StorageUnit("test storage unit");
 		
 		return true;
 	}

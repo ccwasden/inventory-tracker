@@ -25,7 +25,7 @@ public class InventoryTracker extends Model {
 	
 	private InventoryTracker() {
 		_storageUnitManager = StorageUnitManager.inst();
-		 _productManager = ProductManager.inst();
+		_productManager = ProductManager.inst();
 		_itemManager = ItemManager.inst();							
 	}
 

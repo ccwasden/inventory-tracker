@@ -18,12 +18,6 @@ public class StorageUnit extends ProductContainer {
 	/**
 	 * Constructs a new instance of StorageUnit
 	 */
-	public StorageUnit() {
-		super("");
-		_items = new TreeSet<Item>();
-		_sUnitManager = StorageUnitManager.inst();
-	}
-	
 	public StorageUnit(String name) {
 		super(name);
 		_items = new TreeSet<Item>();
