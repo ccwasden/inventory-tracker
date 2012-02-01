@@ -2,6 +2,7 @@ package model;
 
 import java.util.*; 
 
+import java.sql.Timestamp;
 import manager.ItemManager;
 import manager.StorageUnitManager;
 import common.Result;
@@ -255,8 +256,8 @@ public class Item extends Model {
 	// <item product="049000037197" entry-date="06/04/2011" />
 	// -or- <item product="041710112881" entry-date="05/14/2011" exit-time="05/21/2011 12:01 PM" />
 	public String toXML() {
-		String xml = "";
-		xml += "<item product=\"" + getProduct().getBarcode() + "\" entry-date=\"" + formatDateForXML(getDateAdded()) + "\" ";
+		String xml = "<item product=\"";
+		xml += getProduct().getBarcode() + "\" entry-date=\"" + formatDateForXML(getDateAdded()) + "\" ";
 		if (isRemoved()) {
 			xml += "exit-time=\"" + formatDateForXML(getDateRemoved()) + "\" ";
 		}

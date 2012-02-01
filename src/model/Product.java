@@ -249,7 +249,10 @@ public class Product extends Model implements Comparable<Product> {
 		}
 	}
 
+	// <product barcode="037000307570" description="Crest Extra Whitening Toothpaste"
+	//  creation-date="05/14/2011" size="6.2 ounces" supply="4" shelf-life="24" />
 	public String toXML() {
+		String xml = "";
 		return null;
 	}
 

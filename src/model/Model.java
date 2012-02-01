@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 
 @SuppressWarnings("serial")
@@ -13,6 +13,6 @@ public abstract class Model implements Serializable {
 
 	protected StringBuilder formatDateForXML(Date date) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yy");
-		return new StringBuilder(dateFormat.format(date);
+		return new StringBuilder(dateFormat.format(date));
 	}
 }
