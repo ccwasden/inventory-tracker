@@ -25,25 +25,10 @@ public class Importer {
 	}
 	
 	public static void main(String[] args) {
-		if(args.length == 1) importToSerialize(args[0]);
-		else if(args.length == 2 && args[0] == "-sql") importToSQL(args[1]);
-		else usage();
-	}
-	
-	public static void importToSerialize(String path){
 		try {
-			String fileContents = readFile(path);
-			JSONObject json;
-			json = XML.toJSONObject(fileContents);
-			
-			if(json.getJSONObject("inventory-tracker") == null) throw new ImportException("<inventory-tracker> tag not defined");
-			InventoryTracker it = InventoryTracker.fromJSON(json.getJSONObject("inventory-tracker"));
-			
-			FileOutputStream fos = new FileOutputStream("serializedModel.tmp");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-			oos.writeObject(it);
-			oos.close();
+			if(args.length == 1) importToSerialize(args[0]);
+			else if(args.length == 2 && args[0] == "-sql") importToSQL(args[1]);
+			else usage();
 		} catch (ImportException e) {
 			System.out.println("Error - Malformed XML: " + e.getMessage());
 		}
@@ -54,9 +39,28 @@ public class Importer {
 			System.out.println("Error reading file: " + e.getMessage());
 		}
 	}
+	
+	public static void importToSerialize(String path) throws IOException, JSONException, ImportException{
+		InventoryTracker it = getInventoryTrackerFromXMLFile(path);
 		
-	public static void importToSQL(String path){
+		FileOutputStream fos = new FileOutputStream("serializedModel.tmp");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+		oos.writeObject(it);
+		oos.close();
+	}
+		
+	public static void importToSQL(String path) {
 		System.out.println("implement import to sql");
+	}
+	
+	public static InventoryTracker getInventoryTrackerFromXMLFile(String path) throws IOException, ImportException, JSONException{
+		String fileContents = readFile(path);
+		JSONObject json;
+		json = XML.toJSONObject(fileContents);
+		
+		if(json.getJSONObject("inventory-tracker") == null) throw new ImportException("<inventory-tracker> tag not defined");
+		return InventoryTracker.fromJSON(json.getJSONObject("inventory-tracker"));
 	}
 
 	private static String readFile(String path) throws IOException {
