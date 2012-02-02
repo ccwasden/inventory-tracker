@@ -48,6 +48,9 @@ public class Importer {
 
 		oos.writeObject(it);
 		oos.close();
+		
+		System.out.println("SUCCESS --> XML from file \"" + path + 
+				"\" successfully serialized to: serializedModel.tmp");
 	}
 		
 	public static void importToSQL(String path) {

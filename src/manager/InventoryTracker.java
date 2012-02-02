@@ -65,10 +65,10 @@ public class InventoryTracker extends Model {
 		
 		ProductManager pm = ProductManager.fromJSON(
 				getSubArray(json, "products", "product"));
-		ItemManager im = ItemManager.fromJSON(
-				getSubArray(json, "item-history", "item"));
 		StorageUnitManager sum = StorageUnitManager.fromJSON(
 				getSubArray(json, "storage-units", "storage-unit"));
+		ItemManager im = ItemManager.fromJSON(
+				getSubArray(json, "item-history", "item"));
 		
 		return it;
 	}

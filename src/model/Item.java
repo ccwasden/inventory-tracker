@@ -185,7 +185,8 @@ public class Item extends Model implements Comparable<Item>{
 	 * @param su The storage Unit
 	 */
 	public void setStorageUnit(StorageUnit su) {
-		ItemManager.inst().putItemInStorageUnit(this, su);
+		if(su != null)
+			ItemManager.inst().putItemInStorageUnit(this, su);
 	}
 	
 	/**
@@ -281,9 +282,10 @@ public class Item extends Model implements Comparable<Item>{
 	}
 
 
-	public static Item fromJSONToSU(JSONObject json, StorageUnit su) 
+	public static Item fromJSONToSU(JSONObject json, StorageUnit su, boolean requireExitTime) 
 			throws ImportException, JSONException {
-		if(!json.has("product") || !json.has("entry-date"))
+		if(!json.has("product") || !json.has("entry-date") 
+				|| (requireExitTime && !json.has("exit-time")))
 			throw new ImportException("<item> misformatted");
 		Barcode b = new Barcode(json.getLong("product"));
 		Product p = ProductManager.inst().getProduct(b);
@@ -297,7 +299,6 @@ public class Item extends Model implements Comparable<Item>{
 		} catch (ParseException e) {
 			throw new ImportException("Invalid formatted date in item");
 		}
-		
 	}
 
 	@Override
