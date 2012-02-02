@@ -109,9 +109,12 @@ public class ProductGroup extends ProductContainer {
 				"\" supply=\"" + getThreeMonthSupply() + "\">\n";
 		
 		if (getProductGroups() != null && !getProductGroups().isEmpty()) {
-			for(ProductGroup pg : getProductGroups()) {
-				xml += indentXMLBlock(pg.toXML());
+			String pgs = "<product-groups>\n";
+			for (ProductGroup pg : getProductGroups()) {
+				pgs += indentXMLBlock(pg.toXML());
 			}
+			pgs += "</product-groups>\n";
+			xml += indentXMLBlock(pgs);
 		}
 		
 
