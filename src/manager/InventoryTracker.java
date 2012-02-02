@@ -75,7 +75,7 @@ public class InventoryTracker extends Model {
 	}
 	
 	public String toXML() {
-		String xml = "<inventory-tracker>";
+		String xml = "<inventory-tracker>\n";
 		xml += indentXMLBlock(getProductManager().toXML());
 		xml += indentXMLBlock(getStorageUnitManager().toXML());
 
@@ -88,7 +88,7 @@ public class InventoryTracker extends Model {
 		itemxml += "\t</item-history>\n";
 		xml += indentXMLBlock(itemxml);
 
-		xml += "</inventory-tracker>";
+		xml += "</inventory-tracker>\n";
 		return xml;
 	}
 

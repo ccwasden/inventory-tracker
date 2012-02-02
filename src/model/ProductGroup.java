@@ -127,7 +127,7 @@ public class ProductGroup extends ProductContainer {
 		}
 		xml += "\t</items>\n";
 		
-		xml += "</product-group>";
+		xml += "</product-group>\n";
 		return xml;
 	}
 
