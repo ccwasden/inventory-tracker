@@ -33,7 +33,7 @@ public class StorageUnit extends ProductContainer {
 	/**
 	 * @return The Items this StorageUnit contains
 	 */
-	public TreeSet<Item> getItems() {
+	public TreeSet<Item> getAllItems() {
 		return _items;
 	}	
 	
@@ -64,6 +64,9 @@ public class StorageUnit extends ProductContainer {
 	 */
 	public boolean addItem(Item item) {
 		_ensureProductIsInSubUnit(item.getProduct());
+		StorageUnitManager sum = StorageUnitManager.inst();
+		ProductContainer pc = sum.getProductContainerOfSUProd(this, item.getProduct());
+		pc.trackItem(item);
 		return _items.add(item);
 	}	
 	
@@ -166,18 +169,18 @@ public class StorageUnit extends ProductContainer {
 		Size size1 = new Size((float)3.4, SizeUnits.Liters);
 		Product product1 = new Product(barcode1, "description of product 1",
 				(float)5.5, size1, 6);
-		assert (storageUnit1.getItems().size() == 0);
+		assert (storageUnit1.getAllItems().size() == 0);
 		
 		Timestamp expirationDate1 = new Timestamp(55555);
 		Item item1 = new Item(barcode1, product1, storageUnit1, expirationDate1);
 		storageUnit1.addItem(item1);
-		assert (storageUnit1.getItems().size() == 1);
+		assert (storageUnit1.getAllItems().size() == 1);
 		
 		Barcode barcode2 = new Barcode(234);
 		Timestamp expirationDate2 = new Timestamp(666666);
 		Item item2 = new Item(barcode2, product1, storageUnit1, expirationDate2);
 		storageUnit1.addItem(item2);
-		assert (storageUnit1.getItems().size() == 2);
+		assert (storageUnit1.getAllItems().size() == 2);
 		
 		Barcode barcode3 = new Barcode(345);
 		Barcode barcode4 = new Barcode(456);
@@ -187,20 +190,20 @@ public class StorageUnit extends ProductContainer {
 		items3and4.add(item3);
 		items3and4.add(item4);
 		storageUnit1.addItems(items3and4);
-		assert (storageUnit1.getItems().size() == 4);
+		assert (storageUnit1.getAllItems().size() == 4);
 		
 		storageUnit1.removeItem(item3);
-		assert (storageUnit1.getItems().size() == 3);
-		assert (!storageUnit1.getItems().contains(item3));
-		assert (storageUnit1.getItems().contains(item4));
+		assert (storageUnit1.getAllItems().size() == 3);
+		assert (!storageUnit1.getAllItems().contains(item3));
+		assert (storageUnit1.getAllItems().contains(item4));
 		assert (!storageUnit1.canEditStorageUnit(""));
 		assert (!storageUnit1.canEditStorageUnit(null));
 		
 		assert (storageUnit1.getName() == "storageUnit1");
 		storageUnit1.editStorageUnit("storageUnitNewName", items3and4);
 		assert (storageUnit1.getName() == "storageUnitNewName");
-		assert (!storageUnit1.getItems().contains(item1));
-		assert (storageUnit1.getItems().contains(item4));	
+		assert (!storageUnit1.getAllItems().contains(item1));
+		assert (storageUnit1.getAllItems().contains(item4));	
 		
 		return true;
 	}

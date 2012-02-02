@@ -26,6 +26,12 @@ public class StorageUnitProduct extends Model {
 		return 997 * _su.hashCode() ^ 991 * _p.hashCode();
 	}
 	
+	@Override
+	public boolean equals(Object o){
+		return (o instanceof StorageUnitProduct) 
+			? o.hashCode() == hashCode() : false;
+	}
+	
 	/**
 	* Static method for unit testing purposes.
 	* @return true if success

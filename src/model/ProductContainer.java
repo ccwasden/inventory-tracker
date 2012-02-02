@@ -20,7 +20,7 @@ import manager.StorageUnitManager;
  */
 @SuppressWarnings("serial")
 public abstract class ProductContainer extends Model implements Comparable<ProductContainer> {
-	
+	private TreeSet<Item> _pcItems;
 	private String _name;	
 	
 	/**
@@ -48,6 +48,7 @@ public abstract class ProductContainer extends Model implements Comparable<Produ
 			setProductGroups(new TreeSet<ProductGroup>());
 			setProducts(new TreeSet<Product>());
 			_storageUnit = su;
+			_pcItems = new TreeSet<Item>(); 
 		}
 		catch (InvalidDataException e) { }
 	}
@@ -62,6 +63,7 @@ public abstract class ProductContainer extends Model implements Comparable<Produ
 			setProductGroups(new TreeSet<ProductGroup>());
 			setProducts(new TreeSet<Product>());
 			_storageUnit = (StorageUnit) this;
+			_pcItems = new TreeSet<Item>(); 
 		}
 		catch (InvalidDataException e) { }
 	}
@@ -225,8 +227,12 @@ public abstract class ProductContainer extends Model implements Comparable<Produ
 		return _products.contains(product);
 	}
 	
-	public int hashCode(){
-		return _name.hashCode();
+	public boolean trackItem(Item i){
+		return _pcItems.add(i);
+	}
+	
+	public TreeSet<Item> getItems(){
+		return _pcItems;
 	}
 	
 	public void addAllProductsFromJSON(JSONArray jarr) throws JSONException, ImportException{
