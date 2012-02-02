@@ -73,6 +73,7 @@ public class Size extends Model {
 	}
 
 	public String toString() {
-		return "" + getSize() + " "  + getUnits();
+		return "" + (_units.toString() == "count" ? new Integer((int) getSize()) : getSize()) 
+			+ " "  + getUnits();
 	}
 }
