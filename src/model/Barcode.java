@@ -1,5 +1,7 @@
 package model;
 
+import java.text.DecimalFormat;
+
 /**
 * Represents a Barcode.
 */
@@ -67,6 +69,7 @@ public class Barcode extends Model implements Comparable {
 	}
 
 	public String toString() {
-		return "" + getCode();
+		DecimalFormat formatter = new DecimalFormat("000000000000");
+		return formatter.format(getCode());
 	}
 }
