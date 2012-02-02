@@ -208,7 +208,7 @@ public class StorageUnit extends ProductContainer {
 	public String toXML() {
 		String xml = "<storage-unit name=\"" + getName() + "\">\n";
 		// Products just with barcode
-		if (getProducts() != null) {
+		if (getProducts() != null && !getProducts().isEmpty()) {
 			xml += "\t<products>\n";
 			for (Product prod : getProducts()) {
 				xml += "\t\t<product barcode=\"" + prod.getBarcode() + "\" />\n";
@@ -217,7 +217,7 @@ public class StorageUnit extends ProductContainer {
 		}
 
 		// Items not in product group
-		if (getItems() != null) {
+		if (getItems() != null && !getItems().isEmpty()) {
 			xml += "\t<items>\n";
 			for (Item item : getItems()) {
 				xml += "\t\t" + item.toXML();
@@ -226,7 +226,7 @@ public class StorageUnit extends ProductContainer {
 		}
 
 		// TODO recursive product groups
-		if (getProductGroups() != null) {
+		if (getProductGroups() != null && !getProductGroups().isEmpty()) {
 			String pgs = "<product-groups>\n";
 			for (ProductGroup pg : getProductGroups()) {
 				pgs += indentXMLBlock(pg.toXML());
@@ -237,7 +237,5 @@ public class StorageUnit extends ProductContainer {
 
 		xml += "</storage-unit>\n";
 		return xml;
-	}
-
-	
+	}	
 }
