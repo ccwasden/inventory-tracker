@@ -94,7 +94,10 @@ public class StorageUnitManager extends Model {
      */
     public void putStorageUnitProductInContainer(StorageUnit su, Product p, ProductContainer pc){
     	assert pc.getStorageUnit().equals(su);
+    	if(getProductContainerOfSUProd(su, p) != null)
+    		pc.removeProduct(p);
     	_productSUMap.put(new StorageUnitProduct(su, p), pc);
+//    	pc.addProduct(p);
     }
     
     /**
