@@ -50,7 +50,7 @@ public class Exporter {
 
 	public static void main(String[] args) {
 		try {
-			if(args.length == 1) exportToXML("tmp.xml");
+			if(args.length == 1) exportToXML(args[0]);
 			else if(args.length == 2 && args[0] == "-sql") exportToSQL(args[1]);
 			else usage();
 		} catch (FileNotFoundException e) {
