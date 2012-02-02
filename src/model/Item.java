@@ -277,7 +277,7 @@ public class Item extends Model implements Comparable<Item>{
 			xml += "exit-time=\"" + 
 				formatDateTimeForXML(getDateRemoved()) + "\" ";
 		}
-		xml += "/>";
+		xml += "/>\n";
 		return xml;
 	}
 

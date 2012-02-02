@@ -268,7 +268,7 @@ public class Product extends Model implements Comparable<Product> {
 		xml += "creation-date=\"" + formatDateForXML(getCreationDate()) + "\" ";
 		xml += "size=\"" + getSize() + "\" ";
 		xml += "supply=\"" + getThreeMonthSupply() + "\" ";
-		xml += "shelf-life=\"" + getShelfLife() + "\" />";
+		xml += "shelf-life=\"" + getShelfLife() + "\" />\n";
 		return xml;
 	}
 
