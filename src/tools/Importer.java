@@ -31,18 +31,21 @@ public class Importer {
 			else usage();
 		} catch (ImportException e) {
 			System.out.println("Error - Malformed XML: " + e.getMessage());
+			System.out.println("Import aborted");
 		}
 		catch (JSONException e) {
-			System.out.println("Error parsing XML: " + e.getMessage().replaceFirst("JSON", ""));
+			System.out.println("Error parsing XML: " + 
+					e.getMessage().replaceFirst("JSON", ""));
+			System.out.println("Import aborted");
 		}
 		catch (IOException e) {
 			System.out.println("Error reading file: " + e.getMessage());
+			System.out.println("Import aborted");
 		}
 	}
 	
 	public static void importToSerialize(String path) throws IOException, JSONException, ImportException{
 		InventoryTracker it = getInventoryTrackerFromXMLFile(path);
-//		System.out.println(it.toXML());
 		FileOutputStream fos = new FileOutputStream("serializedModel.tmp");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 
