@@ -29,7 +29,7 @@ public abstract class Model implements Serializable {
 	}
 	
 	protected StringBuilder formatDateTimeForXML(Date date) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy KK:mm aa");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
 		return new StringBuilder(dateFormat.format(date));
 	}
 	
@@ -39,7 +39,7 @@ public abstract class Model implements Serializable {
 	}
 	
 	protected static Timestamp getDateTimeFromXML(String s) throws ParseException{
-		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy KK:mm aa");
+		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
 		return new Timestamp(((Date)formatter.parse(s)).getTime());
 	}
 	

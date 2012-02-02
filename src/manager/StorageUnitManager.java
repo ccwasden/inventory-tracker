@@ -35,9 +35,9 @@ public class StorageUnitManager extends Model {
      * Get Singleton
      * @return the singleton instance
      */
-    public static StorageUnitManager getInstance(StorageUnitManager sum)
+    public static StorageUnitManager inst(StorageUnitManager sum)
     {
-      ref = sum;
+      if(ref == null) ref = sum;
       return ref;
     }
     

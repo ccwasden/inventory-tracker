@@ -39,7 +39,7 @@ public class ProductManager extends Model {
      * @return the instance
      */
     public static ProductManager inst(ProductManager pm){
-    	if(ref != null) ref = pm;
+    	if(ref == null) ref = pm;
     	return ref;
     }
     
