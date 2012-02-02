@@ -8,7 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import manager.ImportException;
+import tools.ImportException;
+
 import manager.ItemManager;
 import manager.ProductManager;
 import manager.StorageUnitManager;

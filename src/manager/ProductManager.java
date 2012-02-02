@@ -7,6 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import tools.ImportException;
+
 import model.Barcode;
 import model.Item;
 import model.Model;

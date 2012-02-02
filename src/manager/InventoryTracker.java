@@ -6,6 +6,8 @@ import java.util.TreeSet;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import tools.ImportException;
+
 import gui.common.SizeUnits;
 import model.*;
 

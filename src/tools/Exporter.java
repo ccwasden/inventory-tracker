@@ -5,7 +5,6 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 
-import manager.ImportException;
 import manager.InventoryTracker;
 
 import org.json.JSONException;
