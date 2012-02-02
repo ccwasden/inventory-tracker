@@ -131,7 +131,7 @@ public class ProductGroup extends ProductContainer {
 			// 		xml += "\t\t" + item.toXML();
 			// 	}
 			// }
-			for (Item item : prod.getItems()) {
+			for (Item item : getItems()) {
 				xml += "\t\t" + item.toXML();
 			}
 			xml += "\t</items>\n";
