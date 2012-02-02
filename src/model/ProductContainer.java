@@ -249,7 +249,8 @@ public abstract class ProductContainer extends Model implements Comparable<Produ
 		}
 	}
 	
-	public void addAllProductGroupsFromJSON(JSONArray pGroups) throws JSONException, ImportException {
+	public void addAllProductGroupsFromJSON(JSONArray pGroups) 
+			throws JSONException, ImportException {
 		for(int i = 0; i < pGroups.length(); i++) {
 			JSONObject j = pGroups.getJSONObject(i);
 			ProductGroup pg = new ProductGroup(j.getString("name"), getStorageUnit());
