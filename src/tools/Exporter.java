@@ -22,8 +22,7 @@ public class Exporter {
 		print("USAGE: java tools.Exporter [-sql] <data-file>");
 	}
 
-	private static InventoryTracker importSerializedFile() throws FileNotFoundException,
-													IOException, ClassNotFoundException {
+	private static InventoryTracker importSerializedFile() throws FileNotFoundException, IOException, ClassNotFoundException {
 		FileInputStream fis = new FileInputStream("serializedModel.tmp");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 
@@ -36,12 +35,8 @@ public class Exporter {
 		
 	}
 
-	private static void exportToXML(String filename) throws FileNotFoundException, IOException,
-													ClassNotFoundException, ExportException {
+	private static void exportToXML(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
 		InventoryTracker it = importSerializedFile();
-		if (it == null) {
-			new ExportException("InventoryTracker is null!");
-		}
 
 		BufferedWriter out = new BufferedWriter(new FileWriter(filename));
 		out.write(it.toXML());
@@ -50,7 +45,7 @@ public class Exporter {
 
 	public static void main(String[] args) {
 		try {
-			if(args.length == 1) exportToXML("tmp.xml");
+			if(args.length == 1) exportToXML(args[0]);
 			else if(args.length == 2 && args[0] == "-sql") exportToSQL(args[1]);
 			else usage();
 		} catch (FileNotFoundException e) {
@@ -61,9 +56,6 @@ public class Exporter {
 		}
 		catch (ClassNotFoundException e) {
 			System.out.println("Error - Class not found because we are n00bs: " + e.getMessage());
-		}
-		catch (ExportException e) {
-			System.out.println("Error exporting: " + e.getMessage());
 		}
 	}
 

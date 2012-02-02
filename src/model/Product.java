@@ -263,8 +263,10 @@ public class Product extends Model implements Comparable<Product> {
 	// <product barcode="037000307570" description="Crest Extra Whitening Toothpaste"
 	//  creation-date="05/14/2011" size="6.2 ounces" supply="4" shelf-life="24" />
 	public String toXML() {
+		String description = XML.escape(getDescription());
+		
 		String xml = "<product barcode=\"" + getBarcode() + "\" ";
-		xml += "description=\"" + getDescription() + "\" ";
+		xml += "description=\"" + description + "\" ";
 		xml += "creation-date=\"" + formatDateForXML(getCreationDate()) + "\" ";
 		xml += "size=\"" + getSize() + "\" ";
 		xml += "supply=\"" + getThreeMonthSupply() + "\" ";
