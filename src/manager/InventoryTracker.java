@@ -57,18 +57,18 @@ public class InventoryTracker extends Model {
 		return true;
 	}
 
-	public static InventoryTracker fromJSON(JSONObject json) throws ImportException, JSONException {
+	public static InventoryTracker fromJSON(JSONObject json) 
+			throws ImportException, JSONException {
 		InventoryTracker it = inst();
 		if(!json.has("products") || !json.has("storage-units") || !json.has("item-history"))
 			throw new ImportException("<inventory-tracker> tag malformed");
 		
 		ProductManager pm = ProductManager.fromJSON(
-				json.getJSONObject("products").getJSONArray("product"));
+				getSubArray(json, "products", "product"));
 		ItemManager im = ItemManager.fromJSON(
-				json.getJSONObject("item-history").getJSONArray("item"));
+				getSubArray(json, "item-history", "item"));
 		StorageUnitManager sum = StorageUnitManager.fromJSON(
-				json.getJSONObject("storage-units").getJSONArray("storage-unit"));
-		
+				getSubArray(json, "storage-units", "storage-unit"));
 		
 		return it;
 	}

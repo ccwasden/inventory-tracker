@@ -105,12 +105,12 @@ public class ProductManager extends Model {
 
     private void addProduct(Product p) {
 		_products.add(p);
-		System.out.println("adding product to pm: " + p.getBarcode().hashCode());
+//		System.out.println("adding product to pm: " + p.getBarcode().hashCode());
 		_barcodeProductMap.put(p.getBarcode(), p);
 	}
 
 	public String toXML() {
-        String xml = "</products>\n";
+        String xml = "<products>\n";
         for (Product prod : getAllProducts()) {
             xml += "\t" + prod.toXML();
         }
