@@ -6,14 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import model.Barcode;
-import model.Item;
-import model.ItemFilter;
-import model.Model;
-import model.Product;
-import model.ProductContainer;
-import model.StorageUnit;
-import model.StorageUnitProduct;
+import model.*;
 
 /**
  * Manager for all storage units

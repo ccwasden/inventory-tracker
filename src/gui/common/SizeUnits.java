@@ -1,5 +1,7 @@
 package gui.common;
 
+import java.util.HashMap;
+
 /**
  * Enumeration defining all the units of measurement (including weight,
  * volume, and count) supported by the program.
@@ -44,6 +46,5 @@ public enum SizeUnits {
 	public String toString() {
 		return _string;
 	}
-	
 }
 

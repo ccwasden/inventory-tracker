@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import manager.ImportException;
+import manager.InventoryTracker;
 import manager.ItemManager;
 import manager.ProductManager;
 import manager.StorageUnitManager;
@@ -24,7 +25,7 @@ import common.Result;
  * 
  */
 @SuppressWarnings("serial")
-public class Item extends Model {
+public class Item extends Model implements Comparable<Item>{
 	private Barcode _barcode;
 	private Product _product;
 //	private StorageUnit _storageUnit;
@@ -136,6 +137,8 @@ public class Item extends Model {
 	* @param barcode The new Barcode for this Item.
 	*/
 	public void setBarcode(Barcode barcode) {
+		if(barcode == null)
+			barcode = new Barcode(InventoryTracker.inst().generateUPC());
 		_barcode = barcode;
 	}
 
@@ -282,12 +285,12 @@ public class Item extends Model {
 			throws ImportException, JSONException {
 		if(!json.has("product") || !json.has("entry-date"))
 			throw new ImportException("<item> misformatted");
-		Barcode b = new Barcode(json.getLong("barcode"));
+		Barcode b = new Barcode(json.getLong("product"));
 		Product p = ProductManager.inst().getProduct(b);
 		if(p == null) throw new ImportException("cant find product of specified barcode");
 		try {
 			Timestamp createdDate;
-			createdDate = getDateFromXML(json.getString("creation-date"));
+			createdDate = getDateFromXML(json.getString("entry-date"));
 			Timestamp dateRemoved = json.has("exit-time") ? 
 				getDateTimeFromXML(json.getString("exit-time")) : null;
 			return new Item(null, p, su, null, createdDate, dateRemoved);
@@ -295,5 +298,10 @@ public class Item extends Model {
 			throw new ImportException("Invalid formatted date in item");
 		}
 		
+	}
+
+	@Override
+	public int compareTo(Item o) {
+		return getBarcode().compareTo(o.getBarcode());
 	}
 }

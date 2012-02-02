@@ -14,6 +14,7 @@ public class InventoryTracker extends Model {
 	private ProductManager _productManager;
 	private ItemManager _itemManager;
 	private static InventoryTracker ref;
+	private static long curCode = 0; 
 
 	public static InventoryTracker inst(){
 		if(ref == null) ref = new InventoryTracker();
@@ -87,5 +88,9 @@ public class InventoryTracker extends Model {
 
 		xml += "</inventory-tracker>";
 		return xml;
+	}
+
+	public long generateUPC() {
+		return curCode++;
 	}
 }

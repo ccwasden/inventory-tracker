@@ -33,7 +33,7 @@ public class Importer {
 			System.out.println("Error - Malformed XML: " + e.getMessage());
 		}
 		catch (JSONException e) {
-			System.out.println("Error parsing XML: " + e.getMessage());
+			System.out.println("Error parsing XML: " + e.getMessage().replaceFirst("JSON", ""));
 		}
 		catch (IOException e) {
 			System.out.println("Error reading file: " + e.getMessage());

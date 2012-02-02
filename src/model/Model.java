@@ -1,5 +1,7 @@
 package model;
 
+import gui.common.SizeUnits;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.sql.Timestamp;
@@ -18,7 +20,7 @@ public abstract class Model implements Serializable {
 	// TODO, maybe weird that the XML stuff is in the model when not all Model objects
 	// need to have toXML functions... maybe put in another abstract class that extends model?
 	protected StringBuilder formatDateForXML(Date date) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		return new StringBuilder(dateFormat.format(date));
 	}
 	
@@ -30,6 +32,15 @@ public abstract class Model implements Serializable {
 	protected static Timestamp getDateTimeFromXML(String s) throws ParseException{
 		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy KK:mm aa");
 		return new Timestamp(((Date)formatter.parse(s)).getTime());
+	}
+	
+	protected static SizeUnits stringToSizeUnits(String s){
+		String[] strs = s.split("\\s+");
+		String str = "";
+		for(int i = 0; i < strs.length; i++)
+			str += strs[i].substring(0,1).toUpperCase() 
+			+ strs[i].substring(1);
+		return SizeUnits.valueOf(str);
 	}
 	
 

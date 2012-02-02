@@ -65,7 +65,7 @@ public class Size extends Model {
 		String[] strs = string.split("\\s+");
 		if(strs.length < 2) throw new ImportException("Invalid size: " + string);
 		String type = string.substring(strs[0].length()).trim();
-		return new Size(new Float(strs[0]), SizeUnits.valueOf(type));
+		return new Size(new Float(strs[0]), stringToSizeUnits(type));
 	}
 
 	public String toXML() {
