@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 /**
  * A user-defined group of Products. Product Groups are used by users to aggregate 
  * related Products so they can be managed as a collection.
@@ -13,8 +15,8 @@ public class ProductGroup extends ProductContainer {
 	/**
 	 * Constructs a new instance of a ProductGroup
 	 */
-	public ProductGroup(String name) {
-		super(name);
+	public ProductGroup(String name, StorageUnit su) {
+		super(name, su);
 	}	
 	
 	// Accessors
@@ -107,5 +109,9 @@ public class ProductGroup extends ProductContainer {
 		
 		xml += "</product-group>";
 		return xml;
+	}
+
+	public static ProductGroup fromJSON(JSONObject json, StorageUnit su) {
+		return null;
 	}
 }

@@ -219,4 +219,6 @@ public class StorageUnit extends ProductContainer {
 		xml += "</storage-unit>\n";
 		return xml;
 	}
+
+	
 }

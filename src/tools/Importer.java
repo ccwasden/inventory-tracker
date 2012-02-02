@@ -42,7 +42,7 @@ public class Importer {
 	
 	public static void importToSerialize(String path) throws IOException, JSONException, ImportException{
 		InventoryTracker it = getInventoryTrackerFromXMLFile(path);
-		
+//		System.out.println(it.toXML());
 		FileOutputStream fos = new FileOutputStream("serializedModel.tmp");
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 

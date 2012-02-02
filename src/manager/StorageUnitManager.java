@@ -125,14 +125,19 @@ public class StorageUnitManager extends Model {
 		StorageUnitManager sm = StorageUnitManager.inst();
 		for(int i = 0; i < jsonArray.length(); i++) {
 			JSONObject j = jsonArray.getJSONObject(i);
-			if(!j.has("name") || !j.has("products") || !j.has("items")
-				|| !j.has("product-groups")) 
-				throw new ImportException("<storage-unit> malformed");
 			StorageUnit su = new StorageUnit(j.getString("name"));
-			JSONArray jarr = j.getJSONObject("products").getJSONArray("product");
-			su.addAllProductsFromJSON(jarr);
-			jarr = j.getJSONObject("items").getJSONArray("item");
-			su.addAllItemsFromJSON(jarr);
+			if(j.has("products")) {
+				JSONArray prods = getSubArray(j, "products", "product");
+				su.addAllProductsFromJSON(prods);
+			}
+			if(j.has("items")) {
+				JSONArray itms = getSubArray(j, "items", "item");
+				su.addAllItemsFromJSON(itms);
+			}
+			if(j.has("product-groups")) {
+				JSONArray pgroups = getSubArray(j, "product-groups", "product-group");
+				su.addAllProductGroupsFromJSON(pgroups);
+			}
 			sm.addStorageUnit(su);
 		}
 		return null;

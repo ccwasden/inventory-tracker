@@ -91,8 +91,7 @@ public class ItemManager extends Model {
     }
 
 	public static ItemManager fromJSON(JSONArray jsonArray) {
-		// TODO Implement
-		System.out.println("Implement ItemManager::fromJSON");
+		
 		return null;
 	}
 }
