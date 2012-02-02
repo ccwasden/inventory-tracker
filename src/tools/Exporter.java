@@ -22,20 +22,41 @@ public class Exporter {
 		print("USAGE: java tools.Exporter [-sql] <data-file>");
 	}
 
-	private void importSerializedFile() throws FileNotFoundException, IOException, ClassNotFoundException {
+	private static InventoryTracker importSerializedFile() throws FileNotFoundException, IOException, ClassNotFoundException {
 		FileInputStream fis = new FileInputStream("serializedModel.tmp");
 		ObjectInputStream ois = new ObjectInputStream(fis);
 
 		InventoryTracker it = (InventoryTracker)ois.readObject();
 		ois.close();
+		return it;
+	}
 
-		BufferedWriter out = new BufferedWriter(new FileWriter("model.xml"));
+	private static void exportToSQL(String filename) {
+		
+	}
+
+	private static void exportToXML(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
+		InventoryTracker it = importSerializedFile();
+
+		BufferedWriter out = new BufferedWriter(new FileWriter(filename));
 		out.write(it.toXML());
 		out.close();
 	}
 
 	public static void main(String[] args) {
-		usage();
+		try {
+			if(args.length == 1) exportToXML(args[0]);
+			else if(args.length == 2 && args[0] == "-sql") exportToSQL(args[1]);
+			else usage();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error - File not found: " + e.getMessage());
+		}
+		catch (IOException e) {
+			System.out.println("Error reading file: " + e.getMessage());
+		}
+		catch (ClassNotFoundException e) {
+			System.out.println("Error - Class not found because we are n00bs: " + e.getMessage());
+		}
 	}
 
 }
