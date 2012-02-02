@@ -6,6 +6,7 @@ import java.util.TreeSet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import manager.ImportException;
 import manager.ProductManager;
@@ -242,9 +243,33 @@ public abstract class ProductContainer extends Model implements Comparable<Produ
 	
 	public void addAllItemsFromJSON(JSONArray jarr) throws JSONException, ImportException {
 		for(int k = 0; k < jarr.length(); k++){
-			System.out.println("Implement adding item to product container");
+//			System.out.println("Implement adding item to product container");
 			Item i = Item.fromJSONToSU(jarr.getJSONObject(k), getStorageUnit());
 			getStorageUnit().addItem(i);
+		}
+	}
+	
+	public void addAllProductGroupsFromJSON(JSONArray pGroups) throws JSONException, ImportException {
+		for(int i = 0; i < pGroups.length(); i++) {
+			JSONObject j = pGroups.getJSONObject(i);
+			ProductGroup pg = new ProductGroup(j.getString("name"), getStorageUnit());
+			if(j.has("products")) {
+				JSONArray prods = getSubArray(j, "products", "product");
+				pg.addAllProductsFromJSON(prods);
+			}
+			if(j.has("items")) {
+				JSONArray itms = getSubArray(j, "items", "item");
+				pg.addAllItemsFromJSON(itms);
+			}
+			if(j.has("product-groups")) {
+				JSONArray pgroups = getSubArray(j, "product-groups", "product-group");
+				pg.addAllProductGroupsFromJSON(pgroups);
+			}
+			try {
+				addProductGroup(pg);
+			} catch (InvalidDataException e) {
+				throw new ImportException("invalid product group");
+			}
 		}
 	}
 	

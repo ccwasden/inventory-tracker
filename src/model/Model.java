@@ -9,6 +9,10 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 @SuppressWarnings("serial")
 public abstract class Model implements Serializable {
 	/**
@@ -41,6 +45,19 @@ public abstract class Model implements Serializable {
 			str += strs[i].substring(0,1).toUpperCase() 
 			+ strs[i].substring(1);
 		return SizeUnits.valueOf(str);
+	}
+	
+	protected static JSONArray getSubArray(JSONObject j, 
+			String level1, String level2) throws JSONException{
+		JSONObject l1 = j.getJSONObject(level1);
+		try {
+			return l1.getJSONArray(level2);
+		}
+		catch(JSONException e) {
+			JSONArray jarr = new JSONArray();
+			jarr.put(l1.getJSONObject(level2));
+			return jarr;
+		}
 	}
 	
 
