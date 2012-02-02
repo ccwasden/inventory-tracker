@@ -3,10 +3,10 @@ package manager;
 import java.util.*; 
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import model.Item;
-import model.Model;
-import model.StorageUnit;
+import model.*;
 
 /**
  * Manager for items
@@ -15,7 +15,9 @@ import model.StorageUnit;
 @SuppressWarnings("serial")
 public class ItemManager extends Model {
     private TreeSet<Item> _items;
+    private TreeSet<Item> _deletedItems;
     private HashMap<Item, StorageUnit> _itemToSUMap;
+    private HashMap<Barcode, Item> _barcodeItemMap;
     private static ItemManager ref;
     
     /**
@@ -23,8 +25,10 @@ public class ItemManager extends Model {
      *
      */
     private ItemManager(){
-    	_itemToSUMap = new HashMap<Item, StorageUnit>();
     	_items = new TreeSet<Item>();
+    	_deletedItems = new TreeSet<Item>();
+    	_itemToSUMap = new HashMap<Item, StorageUnit>();
+    	_barcodeItemMap = new HashMap<Barcode, Item>();
     }
     
     /**
@@ -86,12 +90,28 @@ public class ItemManager extends Model {
 		return true;
 	}
 
+	public int getNumberItems(){
+		return _items.size();
+	}
+	
     public String toXML() {
         return null;
     }
 
-	public static ItemManager fromJSON(JSONArray jsonArray) {
-		
-		return null;
+	public static ItemManager fromJSON(JSONArray jsonArray) throws ImportException, JSONException {
+		ItemManager im = inst();
+//		System.out.println(im.getNumberItems());
+		for(int i = 0; i < jsonArray.length(); i++){
+			JSONObject json = jsonArray.getJSONObject(i);
+			Item item = Item.fromJSONToSU(json, null, true);
+			im.addItem(item);
+		}
+		return im;
+	}
+
+	public void addItem(Item i) {
+		if(i.getStorageUnit() == null) _deletedItems.add(i);
+		else _items.add(i);
+		_barcodeItemMap.put(i.getBarcode(), i);
 	}
 }

@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import manager.ImportException;
+import manager.ItemManager;
 import manager.ProductManager;
 import manager.StorageUnitManager;
 
@@ -244,8 +245,9 @@ public abstract class ProductContainer extends Model implements Comparable<Produ
 	public void addAllItemsFromJSON(JSONArray jarr) throws JSONException, ImportException {
 		for(int k = 0; k < jarr.length(); k++){
 //			System.out.println("Implement adding item to product container");
-			Item i = Item.fromJSONToSU(jarr.getJSONObject(k), getStorageUnit());
+			Item i = Item.fromJSONToSU(jarr.getJSONObject(k), getStorageUnit(), false);
 			getStorageUnit().addItem(i);
+			ItemManager.inst().addItem(i);
 		}
 	}
 	
