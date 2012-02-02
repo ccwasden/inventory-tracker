@@ -115,7 +115,7 @@ public class ProductManager extends Model {
             xml += "\t" + prod.toXML();
         }
         xml += "</products>\n";
-        return null;
+        return xml;
     }
 
 	public int numberOfProducts() {
