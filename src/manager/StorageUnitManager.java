@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import tools.ImportException;
+
 import model.*;
 
 /**
@@ -33,9 +35,9 @@ public class StorageUnitManager extends Model {
      * Get Singleton
      * @return the singleton instance
      */
-    public static StorageUnitManager getInstance(StorageUnitManager sum)
+    public static StorageUnitManager inst(StorageUnitManager sum)
     {
-      ref = sum;
+      if(ref == null) ref = sum;
       return ref;
     }
     
@@ -92,7 +94,10 @@ public class StorageUnitManager extends Model {
      */
     public void putStorageUnitProductInContainer(StorageUnit su, Product p, ProductContainer pc){
     	assert pc.getStorageUnit().equals(su);
+    	if(getProductContainerOfSUProd(su, p) != null)
+    		pc.removeProduct(p);
     	_productSUMap.put(new StorageUnitProduct(su, p), pc);
+//    	pc.addProduct(p);
     }
     
     /**
@@ -116,7 +121,7 @@ public class StorageUnitManager extends Model {
     public String toXML() {
         String xml = "<storage-units>\n";
         for(StorageUnit su : getAllStorageUnits()) {
-            xml += su.toXML();
+            xml += indentXMLBlock(su.toXML());
         }
         xml += "</storage-units>\n";
         return xml;

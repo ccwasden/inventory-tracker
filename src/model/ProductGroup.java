@@ -108,26 +108,37 @@ public class ProductGroup extends ProductContainer {
 		String xml = "<product-group name=\"" + getName() + 
 				"\" supply=\"" + getThreeMonthSupply() + "\">\n";
 		
-		// TODO child product groups
-		for(ProductGroup pg : getProductGroups()) {
-			xml += indentXMLBlock(pg.toXML());
-		}
-
-		// Print products
-		xml += "\t<products>\n";
-		for (Product prod : getProducts()) {
-			xml += "\t\t" + prod.toXML();
-		}
-		xml += "\t</products>\n";
-
-		// print items
-		xml += "\t<items>\n";
-		for (Product prod : getProducts()) {
-			for (Item item : prod.getItems()) {
-				xml += "\t\t" + item.toXML();
+		if (getProductGroups() != null && !getProductGroups().isEmpty()) {
+			for(ProductGroup pg : getProductGroups()) {
+				xml += indentXMLBlock(pg.toXML());
 			}
 		}
-		xml += "\t</items>\n";
+		
+
+		// Print products
+		if (getProducts() != null && !getProducts().isEmpty()) {
+			xml += "\t<products>\n";
+			for (Product prod : getProducts()) {
+				xml += "\t\t<product barcode=\"" + prod.getBarcode() + "\" />\n";
+			}
+			xml += "\t</products>\n";
+		}
+		
+
+		// print items
+		if (getItems() != null && !getItems().isEmpty()) {
+			xml += "\t<items>\n";
+			// for (Product prod : getProducts()) {
+			// 	for (Item item : prod.getItems()) {
+			// 		xml += "\t\t" + item.toXML();
+			// 	}
+			// }
+			for (Item item : getItems()) {
+				xml += "\t\t" + item.toXML();
+			}
+			xml += "\t</items>\n";
+		}
+		
 		
 		xml += "</product-group>\n";
 		return xml;

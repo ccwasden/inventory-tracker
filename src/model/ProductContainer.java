@@ -11,7 +11,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import manager.ImportException;
+import tools.ImportException;
+
 import manager.ItemManager;
 import manager.ProductManager;
 import manager.StorageUnitManager;
@@ -129,6 +130,7 @@ public abstract class ProductContainer extends Model implements Comparable<Produ
 	public void addProduct(Product product) {
 		StorageUnitManager.inst()
 			.putStorageUnitProductInContainer(getStorageUnit(), product, this);
+		_products.add(product);
 	}	
 	
 	/**
@@ -299,5 +301,9 @@ public abstract class ProductContainer extends Model implements Comparable<Produ
 	@Override
 	public int compareTo(ProductContainer o) {
 		return getName().compareTo(o.getName());
+	}
+
+	public void removeProduct(Product p) {
+		_products.remove(p);
 	}
 }

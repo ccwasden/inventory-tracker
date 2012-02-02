@@ -1,6 +1,6 @@
 package model;
 
-import manager.ImportException;
+import tools.ImportException;
 import gui.common.SizeUnits;
 
 /**

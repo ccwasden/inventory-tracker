@@ -7,6 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import tools.ImportException;
+
 import model.Barcode;
 import model.Item;
 import model.Model;
@@ -37,7 +39,7 @@ public class ProductManager extends Model {
      * @return the instance
      */
     public static ProductManager inst(ProductManager pm){
-    	if(ref != null) ref = pm;
+    	if(ref == null) ref = pm;
     	return ref;
     }
     

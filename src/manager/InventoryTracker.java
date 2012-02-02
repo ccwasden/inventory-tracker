@@ -6,6 +6,8 @@ import java.util.TreeSet;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import tools.ImportException;
+
 import gui.common.SizeUnits;
 import model.*;
 
@@ -23,7 +25,12 @@ public class InventoryTracker extends Model {
 	}
 	
 	public static void inst(InventoryTracker it){
-		if(ref != null) ref = it;
+		if(ref == null) {
+			ref = it;
+			ItemManager.inst(it.getItemManager());
+			ProductManager.inst(it.getProductManager());
+			StorageUnitManager.inst(it.getStorageUnitManager());
+		}
 	}
 	
 	private InventoryTracker() {
