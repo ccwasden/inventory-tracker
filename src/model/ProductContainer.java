@@ -1,6 +1,9 @@
 package model;
 
+import gui.common.SizeUnits;
+
 import java.text.ParseException;
+import java.util.Scanner;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -261,7 +264,10 @@ public abstract class ProductContainer extends Model implements Comparable<Produ
 			throws JSONException, ImportException {
 		for(int i = 0; i < pGroups.length(); i++) {
 			JSONObject j = pGroups.getJSONObject(i);
-			ProductGroup pg = new ProductGroup(j.getString("name"), getStorageUnit());
+			Scanner supply = new Scanner(new String(j.getString("supply")));
+			
+			Size size = new Size(supply.nextFloat(), stringToSizeUnits((supply.next())));
+			ProductGroup pg = new ProductGroup(j.getString("name"), getStorageUnit(), size);
 			if(j.has("products")) {
 				JSONArray prods = getSubArray(j, "products", "product");
 				pg.addAllProductsFromJSON(prods);

@@ -20,8 +20,9 @@ public class ProductGroup extends ProductContainer {
 	/**
 	 * Constructs a new instance of a ProductGroup
 	 */
-	public ProductGroup(String name, StorageUnit su) {
+	public ProductGroup(String name, StorageUnit su, Size threeMonthSupply) {
 		super(name, su);
+		setThreeMonthSupply(threeMonthSupply);
 	}	
 	
 	// Accessors
@@ -66,8 +67,9 @@ public class ProductGroup extends ProductContainer {
 	public static boolean Test(){
 		
 		StorageUnit storageUnit1 = new StorageUnit("storageUnit1");
-		ProductGroup productGroup1 = new ProductGroup("productGroup1", storageUnit1);
 		Size threeMonthSupply = new Size((float)3.3, SizeUnits.FluidOunces);
+		ProductGroup productGroup1 = new ProductGroup("productGroup1", 
+				storageUnit1, threeMonthSupply);
 		productGroup1.setThreeMonthSupply(threeMonthSupply);
 		assert (productGroup1.getThreeMonthSupply() == threeMonthSupply);		
 		
