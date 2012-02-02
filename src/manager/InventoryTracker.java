@@ -1,6 +1,7 @@
 package manager;
 
 import java.sql.Timestamp;
+import java.util.TreeSet;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,11 +64,11 @@ public class InventoryTracker extends Model {
 		if(!json.has("products") || !json.has("storage-units") || !json.has("item-history"))
 			throw new ImportException("<inventory-tracker> tag malformed");
 		
-		ProductManager pm = ProductManager.fromJSON(
+		ProductManager.fromJSON(
 				getSubArray(json, "products", "product"));
-		StorageUnitManager sum = StorageUnitManager.fromJSON(
+		StorageUnitManager.fromJSON(
 				getSubArray(json, "storage-units", "storage-unit"));
-		ItemManager im = ItemManager.fromJSON(
+		ItemManager.fromJSON(
 				getSubArray(json, "item-history", "item"));
 		
 		return it;
@@ -80,7 +81,8 @@ public class InventoryTracker extends Model {
 
 		// print <item-history>
 		String itemxml = "<item-history>\n";
-		for (Item item : getItemManager().getDeletedItems()) {
+		TreeSet<Item> items = getItemManager().getDeletedItems();
+		for (Item item : items) {
 			itemxml +=  indentXMLBlock(item.toXML());
 		}
 		itemxml += "\t</item-history>\n";

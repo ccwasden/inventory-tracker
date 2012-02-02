@@ -64,7 +64,9 @@ public class ItemManager extends Model {
      * @return ArrayList<Item> The deleted items
      *
      */
-    public ArrayList<Item> getDeletedItems(){return null;}
+    public TreeSet<Item> getDeletedItems(){
+    	return _deletedItems;
+    }
     
     /**
      * Marks an item as deleted

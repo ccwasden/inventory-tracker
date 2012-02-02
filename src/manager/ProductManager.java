@@ -67,7 +67,9 @@ public class ProductManager extends Model {
      * @return ArrayList<Product> All products
      *
      */    
-    public ArrayList<Product> getAllProducts(){return null;}
+    public TreeSet<Product> getAllProducts(){
+    	return _products;
+    }
     
     /**
      * Retrieves all products that apply to the filter

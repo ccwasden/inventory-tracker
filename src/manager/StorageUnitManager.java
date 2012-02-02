@@ -81,7 +81,9 @@ public class StorageUnitManager extends Model {
      * Retrieves all Storage Units 
      * @return TreeSet<StorageUnit> The list of all storage units
      */    
-    public TreeSet<StorageUnit> getAllStorageUnits(){return null;}
+    public TreeSet<StorageUnit> getAllStorageUnits(){
+    	return _storageUnits;
+    }
     
     /**
      * Maps a storage unit and product to a product container 
@@ -117,7 +119,7 @@ public class StorageUnitManager extends Model {
             xml += su.toXML();
         }
         xml += "<storage-units>\n";
-        return null;
+        return xml;
     }
 
 	public static StorageUnitManager fromJSON(JSONArray jsonArray) 

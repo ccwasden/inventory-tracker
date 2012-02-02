@@ -28,6 +28,11 @@ public abstract class Model implements Serializable {
 		return new StringBuilder(dateFormat.format(date));
 	}
 	
+	protected StringBuilder formatDateTimeForXML(Date date) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy KK:mm aa");
+		return new StringBuilder(dateFormat.format(date));
+	}
+	
 	protected static Timestamp getDateFromXML(String s) throws ParseException{
 		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 		return new Timestamp(((Date)formatter.parse(s)).getTime());

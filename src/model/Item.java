@@ -214,7 +214,7 @@ public class Item extends Model implements Comparable<Item>{
 	* @return True if the Item has been removed, else false.
 	*/
 	public boolean isRemoved() {
-		return _expirationDate != null;
+		return _dateRemoved != null;
 	}
 
 	/**
@@ -275,7 +275,7 @@ public class Item extends Model implements Comparable<Item>{
 			formatDateForXML(getDateAdded()) + "\" ";
 		if (isRemoved()) {
 			xml += "exit-time=\"" + 
-				formatDateForXML(getDateRemoved()) + "\" ";
+				formatDateTimeForXML(getDateRemoved()) + "\" ";
 		}
 		xml += "/>";
 		return xml;

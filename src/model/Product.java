@@ -269,7 +269,7 @@ public class Product extends Model implements Comparable<Product> {
 		xml += "size=\"" + getSize() + "\" ";
 		xml += "supply=\"" + getThreeMonthSupply() + "\" ";
 		xml += "shelf-life=\"" + getShelfLife() + "\" />";
-		return null;
+		return xml;
 	}
 
 	@Override
