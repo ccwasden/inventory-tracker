@@ -117,7 +117,7 @@ public class ProductGroup extends ProductContainer {
 		if (getProducts() != null && !getProducts().isEmpty()) {
 			xml += "\t<products>\n";
 			for (Product prod : getProducts()) {
-				xml += "\t\t" + prod.toXML();
+				xml += "\t\t<product barcode=\"" + prod.getBarcode() + "\" />\n";
 			}
 			xml += "\t</products>\n";
 		}
